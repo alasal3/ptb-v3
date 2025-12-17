@@ -1,5 +1,3 @@
-"use client";
-
 import {
     MapPin,
     CalendarClock,
@@ -8,10 +6,11 @@ import {
     Plus,
     Calendar
 } from "lucide-react";
-import { eventsList } from "@/data/events";
+import { getEvents } from "@/lib/api";
 import Link from "next/link";
 
-export default function Events() {
+export default async function Events() {
+    const eventsList = await getEvents();
     return (
         <section id="events" className="py-20 relative overflow-hidden">
             {/* Background elements */}

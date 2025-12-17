@@ -1,5 +1,34 @@
 import { supabase } from './supabase';
-import { Building } from '@/types/database';
+import { Building, Event as DBEvent } from '@/types/database';
+import { EventItem } from '@/data/events';
+import {
+    Gift,
+    Mic2,
+    MessageCircle,
+    Camera,
+    Video,
+    Sparkles,
+    Calendar,
+    MapPin,
+    Play,
+    CalendarClock,
+    Plus
+} from "lucide-react";
+
+// Icon mapping
+const iconMap: Record<string, any> = {
+    Gift,
+    Mic2,
+    MessageCircle,
+    Camera,
+    Video,
+    Sparkles,
+    Calendar,
+    MapPin,
+    Play,
+    CalendarClock,
+    Plus
+};
 
 export async function getNews(): Promise<string[]> {
     const { data, error } = await supabase
@@ -46,4 +75,49 @@ export async function getBuildingById(id: string): Promise<Building | null> {
     }
 
     return data as Building;
+}
+
+// Helper to map DB Event to UI EventItem
+function mapEventFromDB(event: DBEvent): EventItem {
+    return {
+        id: event.id,
+        title: event.title,
+        description: event.description,
+        location: event.location,
+        status: event.status,
+        date: event.date_details, // Map date_details to date
+        features: event.features.map(f => ({
+            ...f,
+            icon: iconMap[f.icon] || Gift // Fallback to Gift if icon not found
+        }))
+    };
+}
+
+export async function getEvents(): Promise<EventItem[]> {
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching events:', error);
+        return [];
+    }
+
+    return (data as DBEvent[]).map(mapEventFromDB);
+}
+
+export async function getEventById(id: string): Promise<EventItem | undefined> {
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error) {
+        console.error(`Error fetching event with id ${id}:`, error);
+        return undefined;
+    }
+
+    return mapEventFromDB(data as DBEvent);
 }

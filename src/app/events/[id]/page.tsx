@@ -1,4 +1,4 @@
-import { getEventById } from "@/data/events";
+import { getEventById } from "@/lib/api";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { notFound } from "next/navigation";
@@ -7,8 +7,7 @@ import Link from "next/link";
 
 export default async function EventPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const eventId = parseInt(id);
-    const event = getEventById(eventId);
+    const event = await getEventById(id);
 
     if (!event) {
         notFound();

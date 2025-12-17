@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export interface EventItem {
-    id: number;
+    id: string;
     title: string;
     description: string;
     location: string;
@@ -27,7 +27,7 @@ export interface EventItem {
 
 export const eventsList: EventItem[] = [
     {
-        id: 1,
+        id: "1",
         title: "اكبر حدث عقاري اتحاد الملاك: من الحلم الى الحقيقة ، قريباً...",
         description: "لا تسمع للوعود، بل شاهد تحقيقها.. يوم حصري للكشف عن أول تجربة واقعية لفكرة اتحاد الملاك بعد اكتمالها.",
         location: "أمام مشروع B2",
@@ -72,6 +72,6 @@ export const eventsList: EventItem[] = [
     }
 ];
 
-export function getEventById(id: number): EventItem | undefined {
+export function getEventById(id: string): EventItem | undefined {
     return eventsList.find(event => event.id === id);
 }
