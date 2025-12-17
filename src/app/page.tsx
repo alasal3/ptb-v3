@@ -9,6 +9,8 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getBuildings } from "@/lib/api";
 
+export const revalidate = 60; // Revalidate data every 60 seconds
+
 export default async function Home() {
   const buildings = await getBuildings();
 
