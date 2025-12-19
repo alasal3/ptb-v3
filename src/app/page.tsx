@@ -32,6 +32,9 @@ export default async function Home() {
         </div>
       </main>
       <Footer />
+      <div className="fixed bottom-0 right-0 bg-black/50 text-white text-xs p-1 z-50 pointer-events-none">
+        Last Updated: {new Date().toLocaleTimeString()}
+      </div>
     </>
   );
 }

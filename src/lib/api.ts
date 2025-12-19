@@ -45,6 +45,7 @@ export async function getNews(): Promise<string[]> {
 }
 
 export async function getBuildings(): Promise<Building[]> {
+    console.log(`[${new Date().toISOString()}] Fetching buildings...`);
     const { data, error } = await supabase
         .from('buildings')
         .select('*, apartments(*)');
