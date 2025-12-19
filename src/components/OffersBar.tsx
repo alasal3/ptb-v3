@@ -46,7 +46,7 @@ export default function OffersBar({ news }: OffersBarProps) {
                 {/* Close Button */}
                 <button
                     onClick={() => setIsVisible(false)}
-                    className="text-slate-400 hover:text-white transition-colors shrink-0 p-1 hover:bg-white/10 rounded-full"
+                    className="text-slate-400 hover:text-white transition-colors shrink-0 p-1 hover:bg-white/10 rounded-full cursor-pointer relative z-10"
                     aria-label="Close news bar"
                 >
                     <X size={18} />
@@ -54,7 +54,7 @@ export default function OffersBar({ news }: OffersBarProps) {
             </div>
 
             {/* Background shimmer */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 translate-x-[-100%] animate-[shimmer_4s_infinite]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 translate-x-[-100%] animate-[shimmer_4s_infinite] pointer-events-none" />
         </div>
     );
 }

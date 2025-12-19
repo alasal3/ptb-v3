@@ -1,15 +1,16 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Process from "@/components/Process";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Events from "@/components/Events";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
 import { getBuildings } from "@/lib/api";
 
-export const revalidate = 60; // Revalidate data every 60 seconds
+// Lazy load components below the fold
+const Process = dynamic(() => import("@/components/Process"), { ssr: true });
+const About = dynamic(() => import("@/components/About"), { ssr: true });
+const Services = dynamic(() => import("@/components/Services"), { ssr: true });
+const Events = dynamic(() => import("@/components/Events"), { ssr: true });
+const Projects = dynamic(() => import("@/components/Projects"), { ssr: true });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: true });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
 
 export default async function Home() {
   const buildings = await getBuildings();

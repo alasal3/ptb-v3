@@ -12,6 +12,8 @@ interface ProjectDetailsProps {
     }>;
 }
 
+export const revalidate = 0; // Real-time updates
+
 export default async function ProjectDetails({ params }: ProjectDetailsProps) {
     // Await params for Next.js 15+ compatibility
     const { id } = await params;

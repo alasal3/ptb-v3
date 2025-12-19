@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Train, Plane } from "lucide-react";
 import Link from "next/link";
 
+export const revalidate = 0; // Real-time updates
+
 export default function NewOctoberPage() {
     return (
         <>
