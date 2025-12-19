@@ -12,6 +12,8 @@ const Projects = dynamic(() => import("@/components/Projects"), { ssr: true });
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: true });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
 
+export const revalidate = 0;
+
 export default async function Home() {
   const buildings = await getBuildings();
 
