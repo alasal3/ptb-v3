@@ -12,7 +12,7 @@ interface ProjectDetailsProps {
     }>;
 }
 
-export const revalidate = 0; // SSR for real-time updates
+export const dynamic = 'force-dynamic'; // SSR for real-time updates
 
 export default async function ProjectDetails({ params }: ProjectDetailsProps) {
     // Await params for Next.js 15+ compatibility
