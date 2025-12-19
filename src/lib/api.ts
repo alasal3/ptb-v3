@@ -1,7 +1,5 @@
 import { supabase } from './supabase';
-import { offers as staticOffers } from '@/data/offers';
 import { Building, Event as DBEvent } from '@/types/database';
-import { Offer } from '@/data/offers';
 import { EventItem } from '@/data/events';
 import {
     Gift,
@@ -122,18 +120,4 @@ export async function getEventById(id: string): Promise<EventItem | undefined> {
     }
 
     return mapEventFromDB(data as DBEvent);
-}
-
-export async function getOffers(): Promise<Offer[]> {
-    try {
-        const { data, error } = await supabase.from('offers').select('*');
-        if (error) {
-            console.error('Error fetching offers from Supabase:', error);
-            return staticOffers;
-        }
-        return data as Offer[];
-    } catch (e) {
-        console.error('Exception fetching offers:', e);
-        return staticOffers;
-    }
 }
