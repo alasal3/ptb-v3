@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { MapPin, CalendarClock, Play, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-export const revalidate = 0; // Disable caching for real-time updates
+export const revalidate = 20; // Disable caching for real-time updates
 
 export default async function EventPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
