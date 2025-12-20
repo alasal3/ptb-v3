@@ -12,6 +12,8 @@ interface ProjectDetailsProps {
     }>;
 }
 
+export const dynamic = 'force-dynamic'; // SSR for real-time updates
+
 export default async function ProjectDetails({ params }: ProjectDetailsProps) {
     // Await params for Next.js 15+ compatibility
     const { id } = await params;

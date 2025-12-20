@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Train, Plane } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic'; // Real-time updates // fix cache 
+
 export default function NewOctoberPage() {
     return (
         <>
@@ -13,7 +15,7 @@ export default function NewOctoberPage() {
                     <div className="mb-12 text-center md:text-right">
                         <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors">
                             <ArrowLeft className="w-4 h-4 ml-2" />
-                            العودة للرئيسية
+                            عودة للرئيسية
                         </Link>
                         <h1 className="text-3xl md:text-5xl font-extrabold leading-tight text-white mb-6">
                             أكتوبر الجديدة.. <span className="text-blue-500">مستقبل الاستثمار الواعد</span> في غرب القاهرة
@@ -29,7 +31,7 @@ export default function NewOctoberPage() {
                         {/* Introduction */}
                         <div className="leading-loose text-lg text-slate-300">
                             <p className="mb-6">
-                                في "برايم توب بيلد"، لا يتم اختيار مواقع مشاريعنا بشكل عشوائي، بل نعتمد على دراسات جدوى دقيقة وتحليلات سوقية عميقة لاتجاهات التوسع العمراني في مصر. قرارنا بالاستثمار والتركيز على منطقة <strong className="text-white">أكتوبر الجديدة</strong> والتوسعات الشمالية لم يكن مجرد خطوة توسعية، بل هو رهان رابح مبني على معطيات واضحة تؤكد أن هذه المنطقة هي "الحصان الأسود" القادم في السوق العقاري المصري، والامتداد الطبيعي والحتمي لمدينة الشيخ زايد وأكتوبر القديمة.
+                                في "برايم توب بيلد"، لا يتم اختيار مواقع مشاريعنا بشكل عشوائي، بل نعتمد دوماً على دراسات جدوى دقيقة وتحليلات سوقية عميقة لاتجاهات التوسع العمراني في مصر. قرارنا بالاستثمار والتركيز على منطقة <strong className="text-white">أكتوبر الجديدة</strong> والتوسعات الشمالية لم يكن مجرد خطوة توسعية، بل هو رهان رابح مبني على معطيات واضحة تؤكد أن هذه المنطقة هي "الحصان الأسود" القادم في السوق العقاري المصري، والامتداد الطبيعي والحتمي لمدينة الشيخ زايد وأكتوبر القديمة.
                             </p>
                             <p className="font-bold text-white">
                                 إليك الأسباب الجوهرية التي جعلت من أكتوبر الجديدة وجهتنا الأولى، ولماذا يجب أن تكون وجهتك الاستثمارية القادمة:

@@ -47,7 +47,7 @@ export default function Hero() {
                             ref={videoRef}
                             controls
                             playsInline
-                            poster="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
+                            poster="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop"
                             className="w-full h-full object-cover"
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}

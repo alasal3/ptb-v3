@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     icon: "https://primetopbuild.com/assets/whitelogo-n5D6un3T.png",
   },
 };
+export const dynamic = 'force-dynamic'; // SSR for OffersBar
 
 import OffersBar from "@/components/OffersBar";
 import FloatingActions from "@/components/FloatingActions";
