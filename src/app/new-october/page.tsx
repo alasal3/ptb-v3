@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { ArrowLeft, Train, Plane } from "lucide-react";
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic'; // Real-time updates
+export const dynamic = 'force-dynamic'; // Real-time updates // fix cache 
 
 export default function NewOctoberPage() {
     return (
@@ -15,7 +15,7 @@ export default function NewOctoberPage() {
                     <div className="mb-12 text-center md:text-right">
                         <Link href="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors">
                             <ArrowLeft className="w-4 h-4 ml-2" />
-                            العودة للرئيسية
+                            عودة للرئيسية
                         </Link>
                         <h1 className="text-3xl md:text-5xl font-extrabold leading-tight text-white mb-6">
                             أكتوبر الجديدة.. <span className="text-blue-500">مستقبل الاستثمار الواعد</span> في غرب القاهرة
