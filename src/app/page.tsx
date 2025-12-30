@@ -4,8 +4,9 @@ import dynamicImport from "next/dynamic";
 import { getBuildings } from "@/lib/api";
 
 // Lazy load components below the fold
-const Process = dynamicImport(() => import("@/components/Process"), { ssr: true });
 const About = dynamicImport(() => import("@/components/About"), { ssr: true });
+const Investment = dynamicImport(() => import("@/components/Investment"), { ssr: true });
+const Lifestyle = dynamicImport(() => import("@/components/Lifestyle"), { ssr: true });
 const Services = dynamicImport(() => import("@/components/Services"), { ssr: true });
 const Events = dynamicImport(() => import("@/components/Events"), { ssr: true });
 const Projects = dynamicImport(() => import("@/components/Projects"), { ssr: true });
@@ -23,8 +24,9 @@ export default async function Home() {
       <main className="relative z-10 mt-8">
         <div id="main-content">
           <Hero />
-          <Process />
           <About />
+          <Investment />
+          <Lifestyle />
           <Services />
           <Events />
           <Projects projects={buildings} />

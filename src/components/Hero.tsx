@@ -18,26 +18,26 @@ export default function Hero() {
             <div className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6 text-center lg:text-right">
                     <h2 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-wide text-white">
-                        نعيد تعريف الاستثمار العقاري..
+                        برايم توب بيلد: رفاهية الكمبوند في وحدتك المستقلة..
                         <span className="block text-blue-400 mt-4 text-3xl md:text-5xl">
-                            جودة، أمان، وشفافية مطلقة
+                            مع توفير 40% من تكلفة السوق.
                         </span>
                     </h2>
                     <p className="text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 text-slate-300 leading-relaxed">
-                        من رحم تحديات السوق، انطلقت Prime Top Build لتقدم الحل الأمثل بنظام &quot;اتحاد الملاك&quot; والمظلة الخدمية المتكاملة. نضمن لك حيازة الأرض بعقود حقيقية، وتنفيذاً هندسياً دقيقاً، واستدامة لخدماتك بمرجعية شرعية.
+                        نكسر القاعدة بمبدأ (السعر الحقيقي): تكلفة الأرض +  المباني والتشطيبات + 10% ربح فقط = شقتك.
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                         <a
                             href="#contact"
                             className="inline-block btn-primary font-bold py-3 px-10 rounded-xl text-lg hover:shadow-blue-500/50 hover:-translate-y-1 transition-all"
                         >
-                            ابدأ رحلتك معنا
+                            احجز مكانك قبل الطرح الرسمي
                         </a>
                         <a
                             href="#contact"
                             className="inline-block border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-3 px-10 rounded-xl text-lg hover:-translate-y-1 transition-all"
                         >
-                            تواصل مع مستشارك العقاري
+                            تواصل معنا
                         </a>
                     </div>
                 </div>

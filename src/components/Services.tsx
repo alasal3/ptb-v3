@@ -5,29 +5,29 @@ import { Building2, HardHat, PaintBucket, ShieldCheck } from "lucide-react";
 const services = [
     {
         id: 1,
-        title: "شركة التطوير",
-        description: "المسؤولية الكاملة عن المشروع، دراسة الجدوى، وإدارة اتحاد الملاك.",
+        title: "ذراع التطوير",
+        description: "انتقاء استراتيجي للأرض (موقع متميز + أوراق قانونية سليمة 100%).",
         icon: Building2,
         color: "blue",
     },
     {
         id: 2,
-        title: "شركة المقاولات",
-        description: "الذراع التنفيذي الذي يضمن جودة البناء ومطابقة المواصفات القياسية والالتزام بالجدول الزمني.",
+        title: "ذراع المقاولات",
+        description: "تنفيذ دقيق للخرسانات والمباني، وتسليم في الموعد (نظام سنتين مريح للجميع).",
         icon: HardHat,
         color: "emerald",
     },
     {
         id: 3,
-        title: "شركة التشطيبات",
-        description: "إشراف هندسي كامل لتحويل وحدتك إلى سكن راقٍ جاهز، مطابق تماماً للتصورات الهندسية.",
+        title: "ذراع التشطيبات",
+        description: "إشراف هندسي لتحويل الوحدة إلى سكن راقٍ.",
         icon: PaintBucket,
         color: "amber",
     },
     {
         id: 4,
-        title: "إدارة الممتلكات",
-        description: "تولي مسؤولية الأمن، الحراسة، النظافة، وتشغيل المرافق لضمان راحة السكان وحفظ قيمة العقار.",
+        title: "إدارة الممتلكات (اتحاد الملاك)",
+        description: "نؤسس اتحاد الملاك قانونياً لضمان حقوقك وتنظيم العلاقة بين الجيران.",
         icon: ShieldCheck,
         color: "purple",
     },
@@ -65,11 +65,14 @@ export default function Services() {
         <section id="services" className="py-20 relative">
             <div className="container mx-auto p-4 relative z-10">
                 <div className="text-center mb-16">
-                    <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-l from-[#C69C2C] via-[#D4AF37] to-[#EAD27A]">
-                        خدماتنا: نظام المظلة المتكاملة
+                    <span className="inline-block px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-slate-300 text-sm font-medium mb-6">
+                        منهجية العمل
+                    </span>
+                    <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-l from-[#C69C2C] via-[#D4AF37] to-[#EAD27A] leading-tight pb-2">
+                        نظام المظلة الواحدة.. التزام "مسطرة"
                     </h3>
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        نوحد الخدمات التي تحتاجها تحت سقف واحد لضمان الجودة وعدم تشتت المسؤوليات
+                        ندير مشروعك عبر 4 أذرع رئيسية لضمان الجودة والجدول الزمني
                     </p>
                 </div>
 
@@ -85,7 +88,7 @@ export default function Services() {
                                 <div className="glass-card p-8 h-full transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-blue-500/20 border border-slate-700/50 relative overflow-hidden">
                                     <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                                    <div className="relative z-10 flex flex-col items-center text-center">
+                                    <div className="relative z-10 flex flex-col items-center text-center h-full">
                                         <div className={`mb-6 p-4 rounded-xl ${colors.bg} ${colors.text} ${colors.hoverBg} group-hover:text-white transition-all duration-300 group-hover:scale-110`}>
                                             <Icon size={48} strokeWidth={1.5} />
                                         </div>

@@ -68,6 +68,12 @@ export default function Contact() {
             // created_at: سوبا بيز بتعمله أوتوماتيك
         };
 
+        // Append Request Type to message
+        const requestType = formData.get("requestType") as string;
+        if (requestType) {
+            dataToSend.message = `[نوع الطلب: ${requestType}] \n ${dataToSend.message}`;
+        }
+
         // إضافة المبنى والشقة إذا تم اختيارهم (اختياري)
         if (selectedBuildingId) {
             dataToSend.interest_buildings_id = selectedBuildingId;
@@ -114,11 +120,15 @@ export default function Contact() {
         <section id="contact" className="py-20">
             <div className="container mx-auto p-4">
                 <h3 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-clip-text text-transparent bg-gradient-to-l from-[#C69C2C] via-[#D4AF37] to-[#EAD27A]">
-                    ابدأ رحلة التملك اليوم
+                    لا تدع الفرصة تفوتك
                 </h3>
                 <div className="max-w-3xl mx-auto glass-card p-8">
                     <p className="text-center text-slate-300 mb-8 text-lg leading-relaxed">
-                        الفرص العظيمة لا تتكرر كثيراً. اكتشف كيف يمكن لبرايم توب بيلد أن تحول طموحاتك إلى واقع ملموس.
+                        "خلال شهر هنعلن عن مشروعين جداد.. الحق احجز مكانك قبل الطرح الرسمي."
+                        <br />
+                        <span className="block mt-4 text-sm text-slate-400">
+                            مع Prime Top Build، أنت تشتري بـ "السعر الحقيقي"، توفر 40%، وتضمن إدارة مستدامة لوحدتك. سيب رقمك في الفورم، وفريق المبيعات هيشرحلك الحسبة الصح.
+                        </span>
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -194,6 +204,21 @@ export default function Contact() {
                                 </select>
                             </div>
                         )}
+
+                        {/* نوع الطلب */}
+                        <div>
+                            <label htmlFor="requestType" className="block mb-2 text-sm font-medium text-slate-300">
+                                نوع الطلب
+                            </label>
+                            <select
+                                id="requestType"
+                                name="requestType"
+                                className="glass-card w-full p-3 rounded-lg border-transparent focus:border-blue-400 focus:ring-0 bg-slate-800/50 text-white"
+                            >
+                                <option value="استلام فوري">استلام فوري</option>
+                                <option value="تحت الإنشاء">تحت الإنشاء</option>
+                            </select>
+                        </div>
 
                         {/* حقل الرسالة */}
                         <div>
