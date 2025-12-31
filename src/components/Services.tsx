@@ -1,108 +1,72 @@
-"use client";
-
-import { Building2, HardHat, PaintBucket, ShieldCheck } from "lucide-react";
-
-const services = [
-    {
-        id: 1,
-        title: "ذراع التطوير",
-        description: "انتقاء استراتيجي للأرض (موقع متميز + أوراق قانونية سليمة 100%).",
-        icon: Building2,
-        color: "blue",
-    },
-    {
-        id: 2,
-        title: "ذراع المقاولات",
-        description: "تنفيذ دقيق للخرسانات والمباني، وتسليم في الموعد (نظام سنتين مريح للجميع).",
-        icon: HardHat,
-        color: "emerald",
-    },
-    {
-        id: 3,
-        title: "ذراع التشطيبات",
-        description: "إشراف هندسي لتحويل الوحدة إلى سكن راقٍ.",
-        icon: PaintBucket,
-        color: "amber",
-    },
-    {
-        id: 4,
-        title: "إدارة الممتلكات (اتحاد الملاك)",
-        description: "نؤسس اتحاد الملاك قانونياً لضمان حقوقك وتنظيم العلاقة بين الجيران.",
-        icon: ShieldCheck,
-        color: "purple",
-    },
-];
-
-const colorClasses = {
-    blue: {
-        bg: "bg-blue-500/20",
-        text: "text-blue-300",
-        hoverBg: "group-hover:bg-blue-500",
-        hoverText: "group-hover:text-blue-400",
-    },
-    emerald: {
-        bg: "bg-emerald-500/20",
-        text: "text-emerald-300",
-        hoverBg: "group-hover:bg-emerald-500",
-        hoverText: "group-hover:text-emerald-400",
-    },
-    amber: {
-        bg: "bg-amber-500/20",
-        text: "text-amber-300",
-        hoverBg: "group-hover:bg-amber-500",
-        hoverText: "group-hover:text-amber-400",
-    },
-    purple: {
-        bg: "bg-purple-500/20",
-        text: "text-purple-300",
-        hoverBg: "group-hover:bg-purple-500",
-        hoverText: "group-hover:text-purple-400",
-    },
-};
+import React from 'react';
+import { Shield, Settings, Wallet, Activity, Smartphone, HeartHandshake, Eye } from 'lucide-react';
 
 export default function Services() {
     return (
-        <section id="services" className="py-20 relative">
-            <div className="container mx-auto p-4 relative z-10">
+        <section id="services" className="py-20 bg-slate-900/30">
+            <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <span className="inline-block px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-slate-300 text-sm font-medium mb-6">
-                        منهجية العمل
-                    </span>
-                    <h3 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-l from-[#C69C2C] via-[#D4AF37] to-[#EAD27A] leading-tight pb-2">
-                        نظام المظلة الواحدة.. التزام "مسطرة"
-                    </h3>
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        ندير مشروعك عبر 4 أذرع رئيسية لضمان الجودة والجدول الزمني
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                        الخدمات وما بعد البيع
+                    </h2>
+                    <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                        نقدم خدمات بمستوى "الكمبوند" داخل عمارات منفصلة، لأننا نؤمن أن السكن أسلوب حياة
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {services.map((service) => {
-                        const Icon = service.icon;
-                        const colors = colorClasses[service.color as keyof typeof colorClasses];
-                        return (
-                            <div
-                                key={service.id}
-                                className="block group h-full"
-                            >
-                                <div className="glass-card p-8 h-full transition-all duration-300 transform group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-blue-500/20 border border-slate-700/50 relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                                    <div className="relative z-10 flex flex-col items-center text-center h-full">
-                                        <div className={`mb-6 p-4 rounded-xl ${colors.bg} ${colors.text} ${colors.hoverBg} group-hover:text-white transition-all duration-300 group-hover:scale-110`}>
-                                            <Icon size={48} strokeWidth={1.5} />
-                                        </div>
-                                        <h4 className={`text-xl font-bold mb-4 text-white ${colors.hoverText} transition-colors`}>
-                                            {service.title}
-                                        </h4>
-                                        <p className="text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
-                                            {service.description}
-                                        </p>
-                                    </div>
-                                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    {[
+                        { icon: Shield, title: "أمن وحراسة", color: "text-blue-400", bg: "bg-blue-500/10" },
+                        { icon: Settings, title: "نظام إدارة متكامل", color: "text-purple-400", bg: "bg-purple-500/10" },
+                        { icon: Wallet, title: "وديعة صيانة واضحة", color: "text-green-400", bg: "bg-green-500/10" },
+                        { icon: Activity, title: "الحفاظ على الرقي", color: "text-orange-400", bg: "bg-orange-500/10" }
+                    ].map((service, idx) => (
+                        <div key={idx} className="glass-card p-6 rounded-xl hover:scale-105 transition-transform duration-300 text-center">
+                            <div className={`w-14 h-14 ${service.bg} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                                <service.icon className={`w-7 h-7 ${service.color}`} />
                             </div>
-                        );
-                    })}
+                            <h3 className="text-lg font-bold text-white">{service.title}</h3>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Technology & Relationship Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="glass-card p-8 rounded-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <Smartphone className="w-8 h-8 text-blue-400" />
+                            منظومة التكنولوجيا
+                        </h3>
+                        <p className="text-slate-300 leading-relaxed">
+                            نستخدم نظامًا (System) داخليًا وموقعًا إلكترونيًا يتيح التوثيق والمتابعة والوضوح لكل الأطراف. التكنولوجيا هنا ليست للمظهر، بل هي أداة لحماية العميل وحماية الشركة، ولضمان أن كل شيء يسير بنظام دقيق.
+                        </p>
+                    </div>
+
+                    <div className="glass-card p-8 rounded-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+                        <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <HeartHandshake className="w-8 h-8 text-purple-400" />
+                            علاقتنا بالعميل
+                        </h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-center gap-2 text-slate-300">
+                                <Eye className="w-4 h-4 text-purple-400" />
+                                نشجعك على رؤية المقايسة.
+                            </li>
+                            <li className="flex items-center gap-2 text-slate-300">
+                                <Eye className="w-4 h-4 text-purple-400" />
+                                ندعوك لسؤال المكاتب الهندسية ومقارنة الأسعار.
+                            </li>
+                            <li className="flex items-center gap-2 text-slate-300">
+                                <Eye className="w-4 h-4 text-purple-400" />
+                                نطلب منك أن تقرأ وتفهم قبل أن توقع.
+                            </li>
+                        </ul>
+                        <p className="mt-4 text-sm text-slate-400 border-t border-slate-700/50 pt-3">
+                            ما نقوله على وسائل التواصل هو نفسه المكتوب في العقد.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

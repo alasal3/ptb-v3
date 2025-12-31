@@ -28,15 +28,15 @@ export default function OffersBar({ news }: OffersBarProps) {
 
     return (
         <div className="w-full bg-slate-900/90 backdrop-blur-md border-b border-white/5 text-white relative overflow-hidden z-[60] shadow-lg">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center gap-4">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center gap-4 relative z-10">
 
                 {/* News Content */}
-                <div className="flex-1 flex items-center justify-center overflow-hidden min-h-[1.5rem]">
+                <div className="flex-1 flex items-center justify-center overflow-hidden h-[3rem]">
                     <div className="flex items-center gap-3 w-full justify-center">
                         <Bell className="w-4 h-4 text-blue-400 shrink-0 animate-pulse hidden sm:block" />
                         <div
                             key={currentIndex}
-                            className="animate-in fade-in slide-in-from-bottom-2 duration-500 text-center font-medium text-slate-200 text-sm md:text-base leading-snug"
+                            className="text-center font-medium text-slate-200 text-sm md:text-base leading-snug"
                         >
                             {currentText}
                         </div>
@@ -46,7 +46,7 @@ export default function OffersBar({ news }: OffersBarProps) {
                 {/* Close Button */}
                 <button
                     onClick={() => setIsVisible(false)}
-                    className="text-slate-400 hover:text-white transition-colors shrink-0 p-1 hover:bg-white/10 rounded-full"
+                    className="text-slate-400 hover:text-white transition-colors shrink-0 p-2 hover:bg-white/10 rounded-full active:scale-95 z-20"
                     aria-label="Close news bar"
                 >
                     <X size={18} />
@@ -54,7 +54,9 @@ export default function OffersBar({ news }: OffersBarProps) {
             </div>
 
             {/* Background shimmer */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 translate-x-[-100%] animate-[shimmer_4s_infinite]" />
+            <div className="absolute inset-0 -skew-x-12 pointer-events-none">
+                <div className="w-full h-full bg-gradient-to-r from-transparent via-blue-500/10 to-transparent animate-[shimmer_4s_infinite] will-change-transform" />
+            </div>
         </div>
     );
 }

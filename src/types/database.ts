@@ -40,3 +40,15 @@ export interface Event {
     features: EventFeature[];
     video_links: string[];
 }
+
+export interface Lead {
+    id?: number;
+    created_at?: string;
+    name: string;
+    email?: string; // Optional based on user request (only name/phone were emphasized)
+    phone: string;
+    interest_apartments_id?: number | null;
+    status: string;
+    interest_buildings_id?: number | null;
+    message?: string;
+}

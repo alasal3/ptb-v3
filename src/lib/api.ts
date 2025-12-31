@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { Building, Event as DBEvent } from '../types/database';
+import { Building, Event as DBEvent, Lead } from '../types/database';
 import { EventItem } from '../data/events';
 import {
     Gift,
@@ -120,4 +120,19 @@ export async function getEventById(id: string): Promise<EventItem | undefined> {
     }
 
     return mapEventFromDB(data as DBEvent);
+}
+
+export async function createLead(lead: Omit<Lead, 'id' | 'created_at'>): Promise<{ success: boolean; error?: any }> {
+    console.log('Sending lead payload:', lead);
+    const { data, error } = await supabase
+        .from('leads')
+        .insert([lead])
+        .select();
+
+    if (error) {
+        console.error('Error creating lead:', JSON.stringify(error, null, 2));
+        return { success: false, error };
+    }
+
+    return { success: true };
 }
