@@ -60,7 +60,7 @@ function ContactFormContent() {
             name: formData.name,
             phone: formData.phone,
             status: 'جديد', // Default status as per user image implication
-            message: formData.message || null,
+            message: formData.message || undefined,
             interest_buildings_id: formData.isInterestedInProject && formData.selectedBuildingId ? parseInt(formData.selectedBuildingId) : null,
             interest_apartments_id: formData.isInterestedInProject && formData.selectedApartmentId ? parseInt(formData.selectedApartmentId) : null,
         };
