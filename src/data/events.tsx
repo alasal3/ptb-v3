@@ -23,6 +23,7 @@ export interface EventItem {
         color: string;
     }[];
     status: "upcoming" | "past";
+    video_links?: string[];
 }
 
 export const eventsList: EventItem[] = [

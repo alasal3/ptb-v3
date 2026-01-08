@@ -29,7 +29,7 @@ export default async function RootLayout({
   const news = await getNews();
 
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         className={`${tajawal.variable} antialiased font-tajawal bg-[#0D1117] text-[#e2e8f0] overflow-x-hidden`}
       >

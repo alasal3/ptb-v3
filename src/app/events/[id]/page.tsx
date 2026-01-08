@@ -29,15 +29,15 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                         </Link>
                     </div>
 
-                    <div className="glass-card p-1 border border-purple-500/30 relative max-w-5xl mx-auto">
+                    <div className="rounded-2xl glass-card p-1 border border-purple-500/30 relative max-w-5xl mx-auto">
                         {/* Glowing effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-blue-500/5 blur-xl -z-10"></div>
+                        <div className="rounded-2xl absolute inset-0 bg-linear-to-r from-purple-500/5 via-pink-500/5 to-blue-500/5 blur-xl -z-10"></div>
 
                         <div className="bg-slate-900/40 backdrop-blur-xl rounded-2xl p-6 md:p-10 overflow-hidden relative">
                             {/* Coming Soon Badge */}
                             {event.status === "upcoming" && (
                                 <div className="absolute top-6 left-6 z-20">
-                                    <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-lg shadow-purple-500/20 animate-pulse">
+                                    <div className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-purple-600 to-blue-600 rounded-full shadow-lg shadow-purple-500/20 animate-pulse">
                                         <CalendarClock className="w-4 h-4 text-white" />
                                         <span className="text-white font-bold text-sm">قريباً</span>
                                     </div>
@@ -53,9 +53,46 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                                     <MapPin className="w-5 h-5" />
                                     {event.location}
                                 </div>
-                                <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                                <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-8">
                                     {event.description}
                                 </p>
+
+                                {(() => {
+                                    const videoUrl = event.video_links?.[0];
+                                    if (!videoUrl || videoUrl.trim() === "") return null;
+
+                                    // Helper to get YouTube ID
+                                    const getYouTubeId = (url: string) => {
+                                        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                                        const match = url.match(regExp);
+                                        return (match && match[2].length === 11) ? match[2] : null;
+                                    };
+
+                                    const youtubeId = getYouTubeId(videoUrl);
+
+                                    return (
+                                        <div className="max-w-4xl mx-auto mb-12 relative rounded-2xl overflow-hidden glass-card border border-purple-500/30 shadow-2xl shadow-purple-500/10 ring-1 ring-purple-500/20">
+                                            <div className="aspect-video relative">
+                                                {youtubeId ? (
+                                                    <iframe
+                                                        src={`https://www.youtube.com/embed/${youtubeId}`}
+                                                        className="w-full h-full"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                    />
+                                                ) : (
+                                                    <video
+                                                        src={videoUrl}
+                                                        className="w-full h-full object-cover"
+                                                        controls
+                                                        playsInline
+                                                    />
+                                                )}
+                                                <div className="absolute inset-0 pointer-events-none bg-linear-to-t from-slate-900/40 to-transparent"></div>
+                                            </div>
+                                        </div>
+                                    );
+                                })()}
                             </div>
 
                             {/* Date Cards */}
@@ -109,7 +146,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                     <a
                                         href="tel:+201000000000"
-                                        className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/25 flex items-center gap-2 group w-full sm:w-auto justify-center"
+                                        className="px-8 py-4 bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/25 flex items-center gap-2 group w-full sm:w-auto justify-center"
                                     >
                                         <span className="text-lg">اتصل للحجز الآن</span>
                                         <Play className="w-5 h-5 fill-current group-hover:translate-x-1 transition-transform" />

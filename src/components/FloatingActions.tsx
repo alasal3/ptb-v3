@@ -13,7 +13,7 @@ export default function FloatingActions() {
 
                 {/* WhatsApp Button */}
                 <a
-                    href="https://wa.me/201000177106"
+                    href="https://wa.me/201000262701"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 relative group"
@@ -29,7 +29,7 @@ export default function FloatingActions() {
 
                 {/* Phone Button */}
                 <a
-                    href="tel:01000177106"
+                    href="tel:01000262701"
                     className="w-12 h-12 bg-[#007AFF] hover:bg-[#0056b3] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 relative group"
                     aria-label="اتصل بنا"
                 >

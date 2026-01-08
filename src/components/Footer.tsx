@@ -34,7 +34,7 @@ export default function Footer() {
                         <div className="space-y-4">
                             <div className="flex items-center justify-center md:justify-start gap-3 text-slate-300">
                                 <span className="font-bold text-blue-400">هاتف:</span>
-                                <a href="tel:01000177106" className="hover:text-white transition-colors" dir="ltr">01000177106</a>
+                                <a href="tel:01000262701" className="hover:text-white transition-colors" dir="ltr">01000262701</a>
                             </div>
                             <div className="flex items-center justify-center md:justify-start gap-3 text-slate-300">
                                 <span className="font-bold text-blue-400">البريد الإلكتروني:</span>

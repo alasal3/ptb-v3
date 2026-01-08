@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Building, Apartment } from '@/types/database';
-import { createLead, getBuildings } from '@/lib/api';
+import { V1Project, V1Unit } from '@/types/database';
+import { createLead, getV1Projects } from '@/lib/api';
 import { Send, CheckCircle2, User, Phone, MessageSquare, Building2, HardHat, Key } from 'lucide-react';
 
 function ContactFormContent() {
     const searchParams = useSearchParams();
-    const [buildings, setBuildings] = useState<Building[]>([]);
+    const [projects, setProjects] = useState<V1Project[]>([]);
     const [loading, setLoading] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -19,20 +19,20 @@ function ContactFormContent() {
         phone: '',
         message: '',
         isInterestedInProject: false,
-        selectedBuildingId: '' as string,
+        selectedProjectId: '' as string,
         selectedApartmentId: '' as string,
     });
 
     // Interest Logic
-    const [availableApartments, setAvailableApartments] = useState<Apartment[]>([]);
+    const [availableUnits, setAvailableUnits] = useState<V1Unit[]>([]);
 
     useEffect(() => {
-        // Fetch buildings on mount
-        const loadBuildings = async () => {
-            const data = await getBuildings();
-            setBuildings(data);
+        // Fetch projects on mount
+        const loadProjects = async () => {
+            const data = await getV1Projects();
+            setProjects(data);
         };
-        loadBuildings();
+        loadProjects();
 
         // Check for message param
         const messageParam = searchParams.get('message');
@@ -41,16 +41,16 @@ function ContactFormContent() {
         }
     }, [searchParams]);
 
-    // Handle Building Selection
+    // Handle Project Selection
     useEffect(() => {
-        if (formData.selectedBuildingId) {
-            const building = buildings.find(b => b.id.toString() === formData.selectedBuildingId);
-            setAvailableApartments(building?.apartments || []);
-            setFormData(prev => ({ ...prev, selectedApartmentId: '' })); // Reset apartment
+        if (formData.selectedProjectId) {
+            const project = projects.find(p => p.id === formData.selectedProjectId);
+            setAvailableUnits(project?.v1_units || []);
+            setFormData(prev => ({ ...prev, selectedApartmentId: '' })); // Reset unit
         } else {
-            setAvailableApartments([]);
+            setAvailableUnits([]);
         }
-    }, [formData.selectedBuildingId, buildings]);
+    }, [formData.selectedProjectId, projects]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,10 +59,11 @@ function ContactFormContent() {
         const payload = {
             name: formData.name,
             phone: formData.phone,
-            status: 'جديد', // Default status as per user image implication
+            status: 'جديد',
             message: formData.message || undefined,
-            interest_buildings_id: formData.isInterestedInProject && formData.selectedBuildingId ? parseInt(formData.selectedBuildingId) : null,
-            interest_apartments_id: formData.isInterestedInProject && formData.selectedApartmentId ? parseInt(formData.selectedApartmentId) : null,
+            // Using new columns for v1_projects references
+            interest_project_id: formData.isInterestedInProject && formData.selectedProjectId ? formData.selectedProjectId : null,
+            interest_unit_id: formData.isInterestedInProject && formData.selectedApartmentId ? formData.selectedApartmentId : null,
         };
 
         const result = await createLead(payload);
@@ -74,7 +75,7 @@ function ContactFormContent() {
                 phone: '',
                 message: '',
                 isInterestedInProject: false,
-                selectedBuildingId: '',
+                selectedProjectId: '',
                 selectedApartmentId: '',
             });
             setTimeout(() => setSuccess(false), 5000);
@@ -87,6 +88,20 @@ function ContactFormContent() {
 
     const handleQuickMessage = (msg: string) => {
         setFormData(prev => ({ ...prev, message: msg }));
+    };
+
+    const translateUnitType = (type: string) => {
+        const types: Record<string, string> = {
+            'apartment': 'شقة',
+            'duplex': 'دوبلكس',
+            'villa': 'فيلا',
+            'penthouse': 'بنتهاوس',
+            'commercial': 'تجاري',
+            'studio': 'استوديو',
+            'office': 'مكتب',
+            'shop': 'محل',
+        };
+        return types[type.toLowerCase()] || type;
     };
 
     return (
@@ -163,13 +178,13 @@ function ContactFormContent() {
                                     <label className="text-slate-400 text-xs">المشروع</label>
                                     <div className="relative">
                                         <select
-                                            value={formData.selectedBuildingId}
-                                            onChange={e => setFormData({ ...formData, selectedBuildingId: e.target.value })}
+                                            value={formData.selectedProjectId}
+                                            onChange={e => setFormData({ ...formData, selectedProjectId: e.target.value })}
                                             className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white appearance-none focus:border-blue-500 focus:outline-none"
                                         >
                                             <option value="">اختر المشروع...</option>
-                                            {buildings.map(b => (
-                                                <option key={b.id} value={b.id}>{b.name}</option>
+                                            {projects.map(p => (
+                                                <option key={p.id} value={p.id}>{p.title}</option>
                                             ))}
                                         </select>
                                         <Building2 className="absolute left-3 top-3.5 w-5 h-5 text-slate-500 pointer-events-none" />
@@ -183,13 +198,13 @@ function ContactFormContent() {
                                             value={formData.selectedApartmentId}
                                             onChange={e => setFormData({ ...formData, selectedApartmentId: e.target.value })}
                                             className="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white appearance-none focus:border-blue-500 focus:outline-none disabled:opacity-50"
-                                            disabled={!formData.selectedBuildingId || availableApartments.length === 0}
+                                            disabled={!formData.selectedProjectId || availableUnits.length === 0}
                                         >
                                             <option value="">
-                                                {availableApartments.length > 0 ? "اختر الوحدة..." : (formData.selectedBuildingId ? "لا توجد وحدات متاحة" : "اختر مشروعاً أولاً")}
+                                                {availableUnits.length > 0 ? "اختر الوحدة..." : (formData.selectedProjectId ? "لا توجد وحدات متاحة" : "اختر مشروعاً أولاً")}
                                             </option>
-                                            {availableApartments.map(apt => (
-                                                <option key={apt.id} value={apt.id}>{apt.name}</option>
+                                            {availableUnits.map(unit => (
+                                                <option key={unit.id} value={unit.id}>{unit.unit_code} - {translateUnitType(unit.type)}</option>
                                             ))}
                                         </select>
                                         <Building2 className="absolute left-3 top-3.5 w-5 h-5 text-slate-500 pointer-events-none" />
@@ -207,24 +222,26 @@ function ContactFormContent() {
                         </label>
 
                         {/* Quick Action Buttons */}
-                        <div className="flex flex-wrap gap-3 mb-2">
-                            <button
-                                type="button"
-                                onClick={() => handleQuickMessage("أنا مهتم بنظام (تحت الإنشاء) - التكلفة الحقيقية")}
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs md:text-sm rounded-full transition-colors"
-                            >
-                                <HardHat className="w-3 h-3 md:w-4 md:h-4" />
-                                مهتم بنظام تحت الإنشاء
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleQuickMessage("أنا مهتم بنظام (الاستلام الفوري) - جاهز للسكن")}
-                                className="flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-400 text-xs md:text-sm rounded-full transition-colors"
-                            >
-                                <Key className="w-3 h-3 md:w-4 md:h-4" />
-                                مهتم بنظام الاستلام الفوري
-                            </button>
-                        </div>
+                        {!formData.isInterestedInProject && (
+                            <div className="flex flex-wrap gap-3 mb-2">
+                                <button
+                                    type="button"
+                                    onClick={() => handleQuickMessage("أنا مهتم بنظام (تحت الإنشاء) - التكلفة الحقيقية")}
+                                    className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-400 text-xs md:text-sm rounded-full transition-colors"
+                                >
+                                    <HardHat className="w-3 h-3 md:w-4 md:h-4" />
+                                    مهتم بنظام تحت الإنشاء
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleQuickMessage("أنا مهتم بنظام (الاستلام الفوري) - جاهز للسكن")}
+                                    className="flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 text-green-400 text-xs md:text-sm rounded-full transition-colors"
+                                >
+                                    <Key className="w-3 h-3 md:w-4 md:h-4" />
+                                    مهتم بنظام الاستلام الفوري
+                                </button>
+                            </div>
+                        )}
 
                         <textarea
                             rows={4}

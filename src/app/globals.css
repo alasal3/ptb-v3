@@ -2,6 +2,8 @@
 
 @theme {
   --font-tajawal: var(--font-tajawal);
+  --color-primary: #0f172a;
+  --color-accent: #d4af37;
 }
 
 @keyframes shimmer {
@@ -12,6 +14,23 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
 }
 
 :root {
@@ -61,16 +80,80 @@ body::before {
 
 @layer components {
   .glass-card {
-    @apply transition-all duration-300 ease-out border rounded-3xl;
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+  }
+
+  .glass-card:hover::before {
+    left: 100%;
   }
 
   .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(30, 41, 59, 0.6);
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-panel {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  .status-completed {
+    background: rgba(16, 185, 129, 0.9);
+    color: white;
+    border: 1px solid #34d399;
+  }
+
+  .status-pending {
+    background: rgba(245, 158, 11, 0.9);
+    color: white;
+    border: 1px solid #fbbf24;
+  }
+
+  .video-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .video-overlay {
+    background: linear-gradient(to top, #020617 0%, transparent 60%);
   }
 
   .glass-menu {

@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { Building, Event as DBEvent, Lead } from '../types/database';
+import { Building, Event as DBEvent, Lead, V1Project, V1HeroSettings, V1MasterStage } from '../types/database';
 import { EventItem } from '../data/events';
 import {
     Gift,
@@ -89,7 +89,8 @@ function mapEventFromDB(event: DBEvent): EventItem {
         features: event.features.map(f => ({
             ...f,
             icon: iconMap[f.icon] || Gift // Fallback to Gift if icon not found
-        }))
+        })),
+        video_links: event.video_links
     };
 }
 
@@ -135,4 +136,58 @@ export async function createLead(lead: Omit<Lead, 'id' | 'created_at'>): Promise
     }
 
     return { success: true };
+}
+
+export async function getV1Projects(): Promise<V1Project[]> {
+    const { data, error } = await supabase
+        .from('v1_projects')
+        .select(`
+            *,
+            v1_units (*),
+            v1_project_stages (*)
+        `)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching v1 projects:', error);
+        return [];
+    }
+
+    // Sort stages by display_order
+    const projects = data?.map(project => ({
+        ...project,
+        v1_project_stages: project.v1_project_stages?.sort((a: any, b: any) => a.display_order - b.display_order)
+    }));
+
+    return projects as V1Project[];
+}
+
+export async function getV1HeroSettings(): Promise<V1HeroSettings | null> {
+    const { data, error } = await supabase
+        .from('v1_hero_settings')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .single();
+
+    if (error) {
+        console.error('Error fetching v1 hero settings:', error);
+        return null;
+    }
+
+    return data as V1HeroSettings;
+}
+
+export async function getV1MasterStages(): Promise<V1MasterStage[]> {
+    const { data, error } = await supabase
+        .from('v1_master_stages')
+        .select('*')
+        .order('default_order', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching v1 master stages:', error);
+        return [];
+    }
+
+    return data as V1MasterStage[];
 }

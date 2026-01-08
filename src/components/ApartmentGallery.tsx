@@ -96,7 +96,7 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
     // رابط الواتساب
     const getWhatsAppLink = (apartmentName: string) => {
         const message = `مرحباً، أستفسر عن الوحدة: ${apartmentName} في مبنى: ${buildingName}`;
-        return `https://wa.me/201000177106?text=${encodeURIComponent(message)}`;
+        return `https://wa.me/201000262701?text=${encodeURIComponent(message)}`;
     };
 
     return (

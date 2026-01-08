@@ -24,7 +24,7 @@ export default async function Events() {
                         <Sparkles className="w-4 h-4 inline-block ml-2" />
                         الفعاليات والأحداث
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-linear-to-r from-purple-400 via-pink-400 to-blue-400">
                         سجلنا الحافل
                     </h2>
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto">
@@ -35,17 +35,17 @@ export default async function Events() {
                 {/* Events List */}
                 <div className="space-y-12">
                     {eventsList.map((event) => (
-                        <div key={event.id} className="glass-card p-1 border border-purple-500/30 relative group hover:border-purple-500/50 transition-colors duration-300">
+                        <div key={event.id} className="rounded-2xl glass-card p-1 border border-purple-500/30 relative group hover:border-purple-500/50 transition-colors duration-300">
                             {/* Glowing effect for upcoming events */}
                             {event.status === "upcoming" && (
-                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-blue-500/5 blur-xl -z-10"></div>
+                                <div className="rounded-2xl absolute inset-0 bg-linear-to-r from-purple-500/5 via-pink-500/5 to-blue-500/5 blur-xl -z-10"></div>
                             )}
 
                             <div className="bg-slate-900/40 backdrop-blur-xl rounded-2xl p-6 md:p-10 overflow-hidden relative">
                                 {/* Coming Soon Badge */}
                                 {event.status === "upcoming" && (
                                     <div className="absolute top-6 left-6 z-20">
-                                        <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-lg shadow-purple-500/20 animate-pulse">
+                                        <div className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-purple-600 to-blue-600 rounded-full shadow-lg shadow-purple-500/20 animate-pulse">
                                             <CalendarClock className="w-4 h-4 text-white" />
                                             <span className="text-white font-bold text-sm">قريباً</span>
                                         </div>
@@ -67,6 +67,8 @@ export default async function Events() {
                                             {event.description}
                                         </p>
 
+
+
                                         <div className="flex flex-wrap gap-4">
                                             <Link
                                                 href={`/events/${event.id}`}
@@ -76,7 +78,7 @@ export default async function Events() {
                                             </Link>
                                             <a
                                                 href="tel:+201000000000"
-                                                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-purple-500/20 flex items-center gap-2"
+                                                className="px-6 py-3 bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-lg transition-all shadow-lg shadow-purple-500/20 flex items-center gap-2"
                                             >
                                                 <span>اتصل للحجز</span>
                                                 <Play className="w-4 h-4 fill-current" />

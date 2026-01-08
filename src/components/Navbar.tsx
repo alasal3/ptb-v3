@@ -11,7 +11,7 @@ export default function Navbar() {
             {/* القائمة الجانبية للموبايل */}
             <div
                 // قمنا بتعديل الخلفية هنا لتكون داكنة وواضحة
-                className={`fixed top-0 left-0 w-full h-full bg-slate-900/98 backdrop-blur-md z-50 flex flex-col items-center justify-center space-y-8 text-2xl font-bold transition-transform duration-300 ease-in-out ${isOpen ? "translate-y-0 visible" : "-translate-y-full invisible"
+                className={`fixed top-0 left-0 w-full h-full bg-slate-900/98 backdrop-blur-md z-50 flex flex-col items-center justify-center space-y-8 text-2xl font-bold transition-transform duration-300 ease-in-out ${isOpen ? "translate-y-0 visible" : "-translate-y-full invisible "
                     }`}
             >
                 <button
@@ -48,13 +48,7 @@ export default function Navbar() {
                 >
                     من نحن
                 </Link>
-                <Link
-                    href="/new-october"
-                    className="text-white hover:text-blue-400 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                >
-                    أكتوبر الجديدة
-                </Link>
+
                 <Link
                     href="/#projects"
                     className="text-white hover:text-blue-400 transition-colors"
@@ -73,7 +67,7 @@ export default function Navbar() {
 
             {/* الهيدر الرئيسي */}
             <header className="w-full z-40 relative p-2">
-                <div className="container mx-auto flex justify-between items-center p-4 glass-card mt-4 md:mt-8">
+                <div className="container mx-auto flex justify-between items-center p-4 glass-card mt-4 md:mt-8 rounded-full">
                     <Link href="/#hero" className="flex items-center">
                         <img
                             src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/whitelogo-n5D6un3T.png"
@@ -96,12 +90,7 @@ export default function Navbar() {
                         >
                             من نحن
                         </Link>
-                        <Link
-                            href="/new-october"
-                            className="nav-link hover:text-blue-400 transition-colors duration-300"
-                        >
-                            أكتوبر الجديدة
-                        </Link>
+
                         <Link
                             href="/#services"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"

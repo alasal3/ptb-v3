@@ -46,7 +46,7 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
                         <div className="flex items-center flex-wrap gap-4">
                             <p className="text-xl text-blue-400">{project.district}</p>
                             <a
-                                href={`https://wa.me/201000177106?text=${encodeURIComponent(`مرحباً، أستفسر عن تفاصيل مشروع: ${project.name}`)}`}
+                                href={`https://wa.me/201000262701?text=${encodeURIComponent(`مرحباً، أستفسر عن تفاصيل مشروع: ${project.name}`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-2 rounded-full transition-colors text-sm font-bold"
