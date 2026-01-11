@@ -70,9 +70,9 @@ export default function Navbar() {
                 <div className="container mx-auto flex justify-between items-center p-4 glass-card mt-4 md:mt-8 rounded-full">
                     <Link href="/#hero" className="flex items-center">
                         <img
-                            src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/whitelogo-n5D6un3T.png"
+                            src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/ptb.png"
                             alt="برايم توب بيلد للتطوير العقاري"
-                            className="h-10 md:h-12 w-auto object-contain"
+                            className="h-16 md:h-20 w-auto object-contain"
                         />
                     </Link>
 

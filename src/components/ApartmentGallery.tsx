@@ -2,12 +2,16 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Apartment } from "@/types/database";
-import { X, ChevronLeft, ChevronRight, ZoomIn, MessageCircle } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, MessageCircle, FileText } from "lucide-react";
 
 interface ApartmentGalleryProps {
     apartments: Apartment[];
     buildingName: string;
 }
+
+const isPdf = (url: string) => {
+    return url?.toLowerCase().includes('.pdf');
+};
 
 export default function ApartmentGallery({ apartments, buildingName }: ApartmentGalleryProps) {
     const [selectedApartment, setSelectedApartment] = useState<Apartment | null>(null);
@@ -118,11 +122,17 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
                                 className="h-64 overflow-hidden relative cursor-pointer"
                                 onClick={() => openLightbox(apartment)}
                             >
-                                <img
-                                    src={images[0]}
-                                    alt={apartment.name}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
+                                {isPdf(images[0]) ? (
+                                    <div className="w-full h-full bg-gray-800 flex items-center justify-center group-hover:scale-110 transition duration-500">
+                                        <FileText size={48} className="text-white drop-shadow-lg" />
+                                    </div>
+                                ) : (
+                                    <img
+                                        src={images[0]}
+                                        alt={apartment.name}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                )}
 
                                 {/* عدد الصور */}
                                 {images.length > 1 && (
@@ -257,11 +267,19 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
 
                         {/* الصورة */}
                         <div className="relative max-w-5xl w-full h-full flex items-center justify-center">
-                            <img
-                                src={getApartmentImages(selectedApartment)[currentImageIndex]}
-                                alt={`${selectedApartment.name} - صورة ${currentImageIndex + 1}`}
-                                className="max-w-full max-h-[60vh] md:max-h-[65vh] object-contain rounded-lg shadow-2xl"
-                            />
+                            {isPdf(getApartmentImages(selectedApartment)[currentImageIndex]) ? (
+                                <iframe
+                                    src={getApartmentImages(selectedApartment)[currentImageIndex]}
+                                    className="w-full h-[80vh] rounded-lg bg-white shadow-2xl"
+                                    title={`${selectedApartment.name} - ملف ${currentImageIndex + 1}`}
+                                />
+                            ) : (
+                                <img
+                                    src={getApartmentImages(selectedApartment)[currentImageIndex]}
+                                    alt={`${selectedApartment.name} - صورة ${currentImageIndex + 1}`}
+                                    className="max-w-full max-h-[60vh] md:max-h-[65vh] object-contain rounded-lg shadow-2xl"
+                                />
+                            )}
 
                             {/* عداد الصور */}
                             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm">
@@ -303,11 +321,17 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
                                             }
                                         `}
                                     >
-                                        <img
-                                            src={img}
-                                            alt={`صورة ${index + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
+                                        {isPdf(img) ? (
+                                            <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                                                <FileText size={20} className="text-white/70" />
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={img}
+                                                alt={`صورة ${index + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        )}
                                         {/* رقم الصورة */}
                                         <div className={`
                                             absolute bottom-1 right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold

@@ -7,9 +7,9 @@ export default function Footer() {
                     {/* Brand Section */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-right gap-4">
                         <img
-                            src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/whitelogo-n5D6un3T.png"
+                            src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/ptb.png"
                             alt="برايم توب بيلد للتطوير العقاري"
-                            className="h-16 w-auto object-contain"
+                            className="h-32 w-auto object-contain"
                         />
                         <h3 className="text-xl font-bold text-white">برايم توب بيلد للتطوير العقاري</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">

@@ -3,7 +3,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { V1Project, V1Unit, V1ProjectStage, V1HeroSettings, V1MasterStage } from "@/types/database";
-import { X, MapPin, CheckCircle, HardHat, Image as ImageIcon, LayoutGrid, Check, Info, Maximize, ArrowLeft, Volume2, VolumeX, ChevronRight, ChevronLeft, MessageCircle } from "lucide-react";
+import { X, MapPin, CheckCircle, HardHat, Image as ImageIcon, LayoutGrid, Check, Info, Maximize, ArrowLeft, Volume2, VolumeX, ChevronRight, ChevronLeft, MessageCircle, FileText } from "lucide-react";
+
+const isPdf = (url: string) => {
+    return url?.toLowerCase().includes('.pdf');
+};
 
 interface ProjectsProps {
     projects: V1Project[];
@@ -20,6 +24,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
     const [filter, setFilter] = useState<'all' | 'completed' | 'under-construction'>('all');
     const [selectedProject, setSelectedProject] = useState<V1Project | null>(null);
     const [activeTab, setActiveTab] = useState<'timeline' | 'units'>('timeline');
+    const [showAll, setShowAll] = useState(false);
 
     // Updated Lightbox State
     const [lightbox, setLightbox] = useState<LightboxState | null>(null);
@@ -83,6 +88,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
     const heroYoutubeId = getYouTubeId(heroVideoUrl);
 
     const filteredProjects = projects.filter(p => filter === 'all' || p.status === filter);
+    const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
 
     const openModal = (project: V1Project) => {
         setSelectedProject(project);
@@ -383,7 +389,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
 
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-6xl mx-auto pb-20">
-                    {filteredProjects.map((project, index) => (
+                    {displayedProjects.map((project, index) => (
                         <div
                             key={project.id}
                             onClick={() => openModal(project)}
@@ -399,12 +405,19 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                             </div>
 
                             <div className="h-3/5 w-full relative overflow-hidden">
-                                <Image
-                                    src={project.cover_image_url || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover group-hover:scale-110 transition duration-1000"
-                                />
+                                {isPdf(project.cover_image_url || "") ? (
+                                    <div className="w-full h-full bg-gray-800 flex flex-col items-center justify-center group-hover:scale-110 transition duration-1000">
+                                        <FileText size={64} className="text-gray-600 mb-2" />
+                                        <span className="text-gray-500 text-sm font-bold">ملف PDF</span>
+                                    </div>
+                                ) : (
+                                    <Image
+                                        src={project.cover_image_url || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition duration-1000"
+                                    />
+                                )}
                                 {/* Overlay to indicate multiple images if available */}
                                 {project.cover_images && project.cover_images.length > 0 && (
                                     <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md text-white text-xs flex items-center gap-1 z-10">
@@ -420,7 +433,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                 <div className="flex flex-col gap-3 text-gray-300 mb-4">
                                     <span className="text-sm flex items-center gap-2"><MapPin size={14} className="text-accent" /> {project.location}</span>
                                     <div className="flex gap-3 text-xs">
-                                        <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">المساحة: {project.area}</span>
+                                        <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">المساحة: {project.area} م²</span>
                                         <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">{project.units_count} وحدة</span>
                                     </div>
                                 </div>
@@ -434,6 +447,23 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                         </div>
                     ))}
                 </div>
+
+                {/* Show More Button */}
+                {filteredProjects.length > 4 && (
+                    <div className="flex justify-center mb-12 -mt-10 relative z-20 animate-[fadeIn_0.5s_ease-out]">
+                        <button
+                            onClick={() => setShowAll(!showAll)}
+                            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-accent text-white hover:text-black rounded-full transition-all duration-300 border border-white/10 hover:border-accent shadow-lg hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] backdrop-blur-sm"
+                        >
+                            <span className="font-bold text-lg">
+                                {showAll ? 'عرض أقل' : 'عرض المزيد'}
+                            </span>
+                            <div className={`transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}>
+                                <ChevronRight size={20} className="transform rotate-90" />
+                            </div>
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Project Modal */}
@@ -498,7 +528,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
                                         <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                             <div className="text-gray-500 text-xs mb-1">المساحة الإجمالية</div>
-                                            <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.area}</div>
+                                            <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.area} م²</div>
                                         </div>
                                         <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                             <div className="text-gray-500 text-xs mb-1">عدد الوحدات</div>
@@ -528,13 +558,21 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                                         className="relative h-40 rounded-xl overflow-hidden cursor-pointer group border border-white/10"
                                                         onClick={() => openLightbox(selectedProject.cover_images!, selectedProject.title, idx)}
                                                     >
-                                                        <Image
-                                                            src={img}
-                                                            alt={`${selectedProject.title} - ${idx + 1}`}
-                                                            fill
-                                                            className="object-cover group-hover:scale-110 transition duration-700"
-                                                        />
-                                                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                                                        {isPdf(img) ? (
+                                                            <div className="w-full h-full bg-gray-800 flex items-center justify-center group-hover:scale-110 transition duration-700">
+                                                                <FileText size={48} className="text-white drop-shadow-lg" />
+                                                            </div>
+                                                        ) : (
+                                                            <>
+                                                                <Image
+                                                                    src={img}
+                                                                    alt={`${selectedProject.title} - ${idx + 1}`}
+                                                                    fill
+                                                                    className="object-cover group-hover:scale-110 transition duration-700"
+                                                                />
+                                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                                                            </>
+                                                        )}
                                                     </div>
                                                 ))}
                                             </div>
@@ -605,18 +643,24 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                                     <div className="relative h-48 md:h-64 w-full shrink-0 group overflow-hidden bg-gray-900">
                                                         {selectedUnit.image_url ? (
                                                             <>
-                                                                <Image
-                                                                    src={selectedUnit.image_url}
-                                                                    alt={selectedUnit.unit_code}
-                                                                    fill
-                                                                    className="object-cover transition duration-700 group-hover:scale-110"
-                                                                />
+                                                                {isPdf(selectedUnit.image_url) ? (
+                                                                    <div className="w-full h-full flex items-center justify-center bg-gray-800 group-hover:bg-gray-700 transition">
+                                                                        <FileText size={64} className="text-white/50 group-hover:text-white transition" />
+                                                                    </div>
+                                                                ) : (
+                                                                    <Image
+                                                                        src={selectedUnit.image_url}
+                                                                        alt={selectedUnit.unit_code}
+                                                                        fill
+                                                                        className="object-cover transition duration-700 group-hover:scale-110"
+                                                                    />
+                                                                )}
                                                                 <div
                                                                     className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer"
                                                                     onClick={() => openLightbox(selectedUnit.image_url!, `${selectedUnit.unit_code} - ${translateUnitType(selectedUnit.type)}`)}
                                                                 >
                                                                     <span className="bg-black/70 text-white px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
-                                                                        <Maximize size={14} /> تكبير
+                                                                        <Maximize size={14} /> {isPdf(selectedUnit.image_url) ? "عرض الملف" : "تكبير"}
                                                                     </span>
                                                                 </div>
                                                             </>
@@ -653,7 +697,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                                                 <Maximize size={16} className="text-gray-500" />
                                                                 <div>
                                                                     <span className="block text-gray-500 text-[10px]">المساحة</span>
-                                                                    <span className="text-white font-bold">{selectedUnit.area}</span>
+                                                                    <span className="text-white font-bold">{selectedUnit.area} م²</span>
                                                                 </div>
                                                             </div>
                                                             <div className="bg-black/30 p-3 rounded-lg flex items-center gap-3">
@@ -690,12 +734,18 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                                                             className="relative h-24 rounded-lg overflow-hidden cursor-pointer group border border-white/10"
                                                                             onClick={() => openLightbox(selectedUnit.images!, `${selectedUnit.unit_code} - صورة ${idx + 1}`, idx)}
                                                                         >
-                                                                            <Image
-                                                                                src={img}
-                                                                                alt={`Unit Image ${idx}`}
-                                                                                fill
-                                                                                className="object-cover group-hover:scale-110 transition duration-700"
-                                                                            />
+                                                                            {isPdf(img) ? (
+                                                                                <div className="w-full h-full bg-gray-800 flex items-center justify-center group-hover:scale-110 transition duration-700">
+                                                                                    <FileText size={32} className="text-white/70" />
+                                                                                </div>
+                                                                            ) : (
+                                                                                <Image
+                                                                                    src={img}
+                                                                                    alt={`Unit Image ${idx}`}
+                                                                                    fill
+                                                                                    className="object-cover group-hover:scale-110 transition duration-700"
+                                                                                />
+                                                                            )}
                                                                         </div>
                                                                     ))}
                                                                 </div>
@@ -750,12 +800,20 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
 
                     <div className="w-full max-w-6xl p-4 text-center h-full flex flex-col justify-center">
                         <div className="relative h-[80vh] w-full">
-                            <Image
-                                src={lightbox.images[lightbox.currentIndex].src}
-                                alt={lightbox.images[lightbox.currentIndex].caption}
-                                fill
-                                className="object-contain"
-                            />
+                            {isPdf(lightbox.images[lightbox.currentIndex].src) ? (
+                                <iframe
+                                    src={lightbox.images[lightbox.currentIndex].src}
+                                    className="w-full h-full rounded-lg bg-white"
+                                    title={lightbox.images[lightbox.currentIndex].caption}
+                                />
+                            ) : (
+                                <Image
+                                    src={lightbox.images[lightbox.currentIndex].src}
+                                    alt={lightbox.images[lightbox.currentIndex].caption}
+                                    fill
+                                    className="object-contain"
+                                />
+                            )}
                         </div>
                         <div className="mt-4">
                             <p className="text-white font-bold text-xl tracking-wide">
