@@ -213,9 +213,9 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
                     onClick={closeLightbox}
                 >
                     {/* Header */}
-                    <div className="flex items-center justify-between p-4 md:p-6 bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-20">
+                    <div className="flex flex-wrap items-center justify-between gap-6 p-4 md:p-6 bg-gradient-to-b from-black/80 to-transparent absolute top-0 left-0 right-0 z-20">
                         {/* اسم الوحدة */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4 flex-1">
                             <h3 className="text-white text-lg md:text-xl font-bold">
                                 {selectedApartment.name}
                             </h3>
@@ -225,7 +225,7 @@ export default function ApartmentGallery({ apartments, buildingName }: Apartment
                         </div>
 
                         {/* الأزرار */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-4 shrink-0">
                             {/* زر الواتساب */}
                             <a
                                 href={getWhatsAppLink(selectedApartment.name)}

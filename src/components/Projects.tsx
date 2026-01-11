@@ -474,8 +474,8 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                     <div className="pointer-events-auto bg-primary border border-white/10 w-full max-w-6xl h-[90vh] rounded-3xl flex flex-col shadow-2xl overflow-hidden relative animate-[fadeInUp_0.4s_ease-out]">
 
                         {/* Modal Header */}
-                        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-primary z-10 shrink-0">
-                            <div>
+                        <div className="p-6 border-b border-white/10 flex flex-wrap gap-6 justify-between items-start bg-primary z-10 shrink-0">
+                            <div className="flex-1 min-w-[200px]">
                                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{selectedProject.title}</h2>
                                 <div className="flex items-center gap-4 text-sm">
                                     <span className="text-gray-400 flex items-center gap-1"><MapPin size={14} className="text-accent" /> {selectedProject.location}</span>
@@ -486,17 +486,17 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                     )}
                                 </div>
                             </div>
-                            <div className="flex gap-2">
+                            <div className="flex gap-4 shrink-0">
                                 <a
                                     href={getWhatsAppLink(selectedProject.title)}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white transition flex items-center justify-center shadow-lg hover:scale-110 active:scale-95"
+                                    className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white transition flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 shrink-0"
                                     title="استفسر عبر واتساب"
                                 >
                                     <MessageCircle size={20} />
                                 </a>
-                                <button onClick={closeModal} className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500 hover:text-white text-gray-400 transition flex items-center justify-center">
+                                <button onClick={closeModal} className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500 hover:text-white text-gray-400 transition flex items-center justify-center shrink-0">
                                     <X size={20} />
                                 </button>
                             </div>
