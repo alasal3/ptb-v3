@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import dynamicImport from "next/dynamic";
 import { getV1Projects, getV1HeroSettings, getV1MasterStages } from "@/lib/api";
+import JsonLd from "@/components/JsonLd";
 
 // Lazy load components below the fold
 const About = dynamicImport(() => import("@/components/About"), { ssr: true });
@@ -26,8 +27,28 @@ export default async function Home() {
     getV1MasterStages()
   ]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Prime Top Build",
+    "image": "https://primetopbuild.com/assets/whitelogo-n5D6un3T.png",
+    "@id": "https://primetopbuild.com",
+    "url": "https://primetopbuild.com",
+    "telephone": "01000262701",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cairo",
+      "addressCountry": "EG"
+    },
+    "sameAs": [
+      "https://facebook.com/primetopbuild",
+      "https://instagram.com/primetopbuild"
+    ]
+  };
+
   return (
     <>
+      <JsonLd data={jsonLd} />
       <Navbar />
       <main className="relative z-10 mt-8">
         <div id="main-content">

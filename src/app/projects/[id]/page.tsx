@@ -5,6 +5,8 @@ import { getBuildingById } from "@/lib/api";
 import { notFound } from "next/navigation";
 import ApartmentGallery from "@/components/ApartmentGallery";
 import ImageGallery from "@/components/ImageGallery";
+import { Metadata, ResolvingMetadata } from "next";
+import JsonLd from "@/components/JsonLd";
 
 interface ProjectDetailsProps {
     params: Promise<{
@@ -13,6 +15,33 @@ interface ProjectDetailsProps {
 }
 
 export const dynamic = 'force-dynamic'; // SSR for real-time updates
+
+export async function generateMetadata(
+    { params }: ProjectDetailsProps,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { id } = await params;
+    const project = await getBuildingById(id);
+
+    if (!project) {
+        return {
+            title: 'المشروع غير موجود',
+        };
+    }
+
+    const previousImages = (await parent).openGraph?.images || [];
+    const mainImage = project.facade_images?.[0] || "https://primetopbuild.com/assets/whitelogo-n5D6un3T.png";
+
+    return {
+        title: project.name,
+        description: project.details?.substring(0, 160) || `تفاصيل مشروع ${project.name}`,
+        openGraph: {
+            title: `${project.name} | برايم توب بيلد`,
+            description: project.details?.substring(0, 200),
+            images: [mainImage, ...previousImages],
+        },
+    };
+}
 
 export default async function ProjectDetails({ params }: ProjectDetailsProps) {
     // Await params for Next.js 15+ compatibility
@@ -24,8 +53,22 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
         notFound();
     }
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Place",
+        "name": project.name,
+        "description": project.details,
+        "image": project.facade_images?.[0],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": project.district,
+            "addressCountry": "EG"
+        }
+    };
+
     return (
         <div className="min-h-screen text-slate-100 font-sans">
+            <JsonLd data={jsonLd} />
             <Navbar />
             <main className="container mx-auto px-4 py-24">
                 <div className="max-w-6xl mx-auto">
