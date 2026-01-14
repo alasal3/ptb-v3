@@ -42,13 +42,26 @@ export default function Navbar() {
                     الرئيسية
                 </Link>
                 <Link
-                    href="/#about"
+                    href="/#philosophy"
                     className="text-white hover:text-blue-400 transition-colors"
                     onClick={() => setIsOpen(false)}
                 >
-                    من نحن
+                    لماذا نحن
                 </Link>
-
+                <Link
+                    href="/#features"
+                    className="text-white hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                >
+                    مميزاتنا
+                </Link>
+                <Link
+                    href="/services"
+                    className="text-white hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                >
+                    خدماتنا
+                </Link>
                 <Link
                     href="/#projects"
                     className="text-white hover:text-blue-400 transition-colors"
@@ -57,7 +70,21 @@ export default function Navbar() {
                     مشاريعنا
                 </Link>
                 <Link
-                    href="/#contact"
+                    href="/events"
+                    className="text-white hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                >
+                    الفعاليات
+                </Link>
+                <Link
+                    href="/about"
+                    className="text-white hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                >
+                    من نحن
+                </Link>
+                <Link
+                    href="/contact"
                     className="text-white hover:text-blue-400 transition-colors"
                     onClick={() => setIsOpen(false)}
                 >
@@ -77,7 +104,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* هنا التعديل: استخدمنا gap بدلاً من space-x */}
-                    <nav className="hidden md:flex items-center gap-8">
+                    <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-sm lg:text-base font-medium">
                         <Link
                             href="/#hero"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"
@@ -85,14 +112,19 @@ export default function Navbar() {
                             الرئيسية
                         </Link>
                         <Link
-                            href="/#about"
+                            href="/#philosophy"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"
                         >
-                            من نحن
+                            لماذا نحن
                         </Link>
-
                         <Link
-                            href="/#services"
+                            href="/#features"
+                            className="nav-link hover:text-blue-400 transition-colors duration-300"
+                        >
+                            مميزاتنا
+                        </Link>
+                        <Link
+                            href="/services"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"
                         >
                             خدماتنا
@@ -104,7 +136,19 @@ export default function Navbar() {
                             مشاريعنا
                         </Link>
                         <Link
-                            href="/#contact"
+                            href="/events"
+                            className="nav-link hover:text-blue-400 transition-colors duration-300"
+                        >
+                            الفعاليات
+                        </Link>
+                        <Link
+                            href="/about"
+                            className="nav-link hover:text-blue-400 transition-colors duration-300"
+                        >
+                            من نحن
+                        </Link>
+                        <Link
+                            href="/contact"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"
                         >
                             تواصل معنا

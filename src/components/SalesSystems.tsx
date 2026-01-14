@@ -44,7 +44,7 @@ export default function SalesSystems() {
                         </div>
                         <div className="p-6 pt-0 mt-auto">
                             <a
-                                href="/?message=أنا مهتم بنظام (تحت الإنشاء)#contact-form"
+                                href="/contact?message=أنا مهتم بنظام (تحت الإنشاء)"
                                 className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
                             >
                                 أنا مهتم بهذه الخطة
@@ -80,7 +80,7 @@ export default function SalesSystems() {
                         </div>
                         <div className="p-6 pt-0 mt-auto">
                             <a
-                                href="/?message=أنا مهتم بنظام (الاستلام الفوري)#contact-form"
+                                href="/contact?message=أنا مهتم بنظام (الاستلام الفوري)"
                                 className="block w-full text-center bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-green-900/20"
                             >
                                 أنا مهتم بهذه الخطة

@@ -40,6 +40,20 @@ export default function DeliveryStandards() {
                                     <span className="text-slate-400">باب مصفح عالي الجودة.</span>
                                 </div>
                             </li>
+                            <li className="flex items-start gap-3">
+                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
+                                <div>
+                                    <span className="text-white font-bold block mb-1">الواجهات:</span>
+                                    <span className="text-slate-400">واجهات مشطبة بالكامل.</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
+                                <div>
+                                    <span className="text-white font-bold block mb-1">الشبابيك والبلكونة:</span>
+                                    <span className="text-slate-400"> شبابيك وباب بلكونة الوميتال بجودة عالية.</span>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 

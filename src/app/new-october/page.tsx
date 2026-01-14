@@ -87,7 +87,7 @@ export default function NewOctoberPage() {
                             <ul className="space-y-4 mr-4 text-slate-300">
                                 <li>
                                     <strong className="text-white block mb-1">هامش الربح:</strong>
-                                    أسعار المتر في أكتوبر الجديدة ما زالت في مرحلة النمو مقارنة بمدينة الشيخ زايد أو التجمع الخامس التي وصلت لأسعار فلكية. هذا يعني أن هامش الربح المتوقع (Capital Appreciation) عند إعادة البيع بعد سنوات قليلة سيكون ضخماً للغاية.
+                                    أسعار المتر  ما زالت في مرحلة النمو مقارنة بمدينة الشيخ زايد أو التجمع الخامس التي وصلت لأسعار فلكية. هذا يعني أن هامش الربح المتوقع (Capital Appreciation) عند إعادة البيع بعد سنوات قليلة سيكون ضخماً للغاية.
                                 </li>
                                 <li>
                                     <strong className="text-white block mb-1">القوة الشرائية:</strong>
