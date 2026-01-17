@@ -35,7 +35,7 @@ export default function MallProject({ project }: MallProjectProps) {
                     alt={project.title}
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-primary via-transparent to-transparent opacity-90"></div>
 
                 <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
                     <div className="container mx-auto">

@@ -16,7 +16,7 @@ export default function MallBanner() {
                             alt="Mall Background"
                             className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-transparent"></div>
+                        <div className="absolute -top-24 -right-24 w-96 h-96 bg-linear-to-r from-accent/20 to-blue-500/20 blur-3xl rounded-full"></div>
                     </div>
 
                     <div className="relative p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10">

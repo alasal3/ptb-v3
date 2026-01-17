@@ -16,7 +16,7 @@ export default function About() {
                         قصتنا ورؤيتنا
                     </span>
                     <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
-                        نحن <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Prime Top Build</span>
+                        نحن <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600">برايم توب بيلد</span>
                     </h2>
                     <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
                         نحن شركة تطوير عقاري تأسست برؤية واضحة تهدف إلى تغيير مفهوم السكن والاستثمار. في Prime Top Build، لا نبني مجرد جدران، بل نبني <span className="text-white font-bold">"قيمة"</span>.
@@ -43,7 +43,7 @@ export default function About() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
                     <div className="space-y-8 animate-in slide-in-from-right-10 duration-700">
                         <div className="glass-card p-8 rounded-3xl border-r-4 border-r-blue-500 relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute top-0 left-0 w-full h-full bg-linear-to-l from-transparent via-blue-500/5 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
                                 <Eye className="w-6 h-6 text-blue-400" />
                                 رؤيتنا
@@ -54,7 +54,7 @@ export default function About() {
                         </div>
 
                         <div className="glass-card p-8 rounded-3xl border-r-4 border-r-purple-500 relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute top-0 left-0 w-full h-full bg-linear-to-l from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
                                 <Target className="w-6 h-6 text-purple-400" />
                                 مهمتنا
@@ -71,7 +71,7 @@ export default function About() {
                             alt="عن الشركة"
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
                         <div className="absolute bottom-10 right-10 text-white max-w-md">
                             <div className="inline-block px-4 py-2 bg-blue-500 rounded-lg text-sm font-bold mb-4">قيمنا الأساسية</div>
                             <div className="font-bold text-3xl mb-4">الأمانة الهندسية</div>

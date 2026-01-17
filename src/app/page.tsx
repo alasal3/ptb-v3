@@ -52,7 +52,9 @@ export default async function Home() {
           <DeliveryStandards />
           <Projects projects={projects} heroSettings={heroSettings} masterStages={masterStages} />
           <div className="mb-12"><MallBanner /></div>
-          <ContactForm />
+          <section id="contact" className="py-20 lg:py-32">
+            <ContactForm />
+          </section>
         </div>
       </main >
       <Footer />

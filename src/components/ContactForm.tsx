@@ -105,7 +105,7 @@ function ContactFormContent() {
     };
 
     return (
-        <div id="contact-form" className="max-w-4xl mx-auto glass-card p-6 md:p-12 rounded-3xl border-t-4 border-t-blue-500 shadow-2xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto glass-card p-6 md:p-12 rounded-3xl border-t-4 border-t-blue-500 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
 
             <div className="text-center mb-10">
@@ -255,7 +255,7 @@ function ContactFormContent() {
                     <button
                         type="submit"
                         disabled={submitting}
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/20 transform hover:-translate-y-1 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full bg-linear-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-600/20 transform hover:-translate-y-1 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         {submitting ? (
                             <span className="inline-block animate-pulse">جاري الإرسال...</span>
