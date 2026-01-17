@@ -38,6 +38,12 @@ export default function DeliveryStandards() {
             title: "استدامة القيمة (Facility Management)",
             description: "لا تنتهي علاقتنا بك عند البيع؛ نوفر نظام إدارة وصيانة دورية للمبنى بعد التسليم للحفاظ على نظافته وكفاءته، مما يضمن زيادة سعره مستقبلاً.",
             color: "teal"
+        },
+        {
+            icon: CheckSquare,
+            title: "باكيه جراش",
+            description: "نضمن لك مكاناً مخصصاً لسيارتك داخل جراش المبنى، لتوفير أقصى درجات الراحة والأمان لك ولأسرتك.",
+            color: "blue"
         }
     ];
 

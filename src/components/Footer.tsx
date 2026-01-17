@@ -46,11 +46,11 @@ export default function Footer() {
 
                             <li className="flex items-center justify-center md:justify-start gap-3 text-slate-400">
                                 <span className="font-bold text-white"> الموبايل:</span>
-                                <span dir="ltr">01000262701</span>
+                                <a href="tel:01000262701" dir="ltr" className="hover:text-blue-400 transition-colors">01000262701</a>
                             </li>
                             <li className="flex items-center justify-center md:justify-start gap-3 text-slate-400">
                                 <span className="font-bold text-white">البريد الإلكتروني:</span>
-                                <span>info@primetopbuild.com</span>
+                                <a href="mailto:info@prime-top-build.com" className="hover:text-blue-400 transition-colors">info@prime-top-build.com</a>
                             </li>
                         </ul>
                     </div>

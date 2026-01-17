@@ -190,11 +190,14 @@ export default function ProjectDetails({ project, masterStages }: ProjectDetails
                                         <div className="text-gray-500 text-xs mb-1">المساحة الإجمالية</div>
                                         <div className="font-bold text-xl md:text-2xl text-white">{project.area} م²</div>
                                     </div>
+                                    <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                        <div className="text-gray-500 text-xs mb-1">المواصفات</div>
+                                        <div className="font-bold text-xl md:text-2xl text-white">باكية جراج</div>
+                                    </div>
                                     {/* <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                         <div className="text-gray-500 text-xs mb-1">عدد الوحدات</div>
                                         <div className="font-bold text-xl md:text-2xl text-white">{project.units_count}</div>
                                     </div> */}
-
                                     {project.delivery_date && (
                                         <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                             <div className="text-gray-500 text-xs mb-1">التسليم المتوقع</div>

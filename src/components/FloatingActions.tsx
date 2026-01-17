@@ -27,6 +27,18 @@ export default function FloatingActions() {
                     </span>
                 </a>
 
+                {/* Email Button */}
+                <a
+                    href="mailto:info@prime-top-build.com"
+                    className="w-12 h-12 bg-[#EA4335] hover:bg-[#D93025] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 relative group"
+                    aria-label="ارسل ايميل"
+                >
+                    <MessageSquareText size={20} />
+                    <span className="absolute left-full ml-2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        ايميل
+                    </span>
+                </a>
+
                 {/* Phone Button */}
                 <a
                     href="tel:01000262701"
