@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { V1Project, V1Unit, V1ProjectStage, V1HeroSettings, V1MasterStage } from "@/types/database";
 import { X, MapPin, CheckCircle, HardHat, Image as ImageIcon, LayoutGrid, Check, Info, Maximize, ArrowLeft, Volume2, VolumeX, ChevronRight, ChevronLeft, MessageCircle, FileText } from "lucide-react";
+import Link from 'next/link';
 
 const isPdf = (url: string) => {
     return url?.toLowerCase().includes('.pdf');
@@ -267,11 +268,15 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                 {/* Section Header (Static) */}
                 <div className="text-center mb-12 animate-card" style={{ animationDelay: '0.1s' }}>
                     <h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-transparent bg-clip-text bg-linear-to-b from-white to-gray-400 tracking-tight">
-                        أعمالنا <span className="text-accent">ومشاريعنا</span>
+                        مشاريعنا
                     </h1>
-                    <p className="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto">
-                        نحول الرؤى الهندسية إلى واقع ملموس.. التزام بالجودة، دقة في التنفيذ، وإبداع في التصميم.
+                    <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl mx-auto mb-6">
+                        نفخر بامتلاكنا محفظة تضم <span className="text-accent font-bold">17 مشروعاً سكنياً</span> (عمارات منفصلة) في أميز المواقع
                     </p>
+                    <div className="flex flex-wrap justify-center gap-4 text-sm">
+                        <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-4 py-2 rounded-full">مشاريع قيد التسليم الفوري</span>
+                        <span className="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-4 py-2 rounded-full">مشاريع تحت الإنشاء بجدول زمني دقيق</span>
+                    </div>
                 </div>
 
                 {/* Video Section (Dynamic Overlay) */}
@@ -390,10 +395,10 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-6xl mx-auto pb-20">
                     {displayedProjects.map((project, index) => (
-                        <div
+                        <Link
                             key={project.id}
-                            onClick={() => openModal(project)}
-                            className="glass-card rounded-3xl cursor-pointer group h-[450px] animate-card"
+                            href={`/projects/${project.id}`}
+                            className="glass-card rounded-3xl cursor-pointer group h-[450px] animate-card block"
                             style={{ animationDelay: `${0.4 + (index * 0.1)}s` }}
                         >
                             <div className={`status-badge shadow-lg ${project.status === 'completed' ? 'status-completed' : 'status-pending'}`}>
@@ -444,7 +449,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

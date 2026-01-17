@@ -41,21 +41,8 @@ export default function Navbar() {
                 >
                     الرئيسية
                 </Link>
-                <Link
-                    href="/#philosophy"
-                    className="text-white hover:text-blue-400 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                >
-                    لماذا نحن
-                </Link>
 
-                <Link
-                    href="/services"
-                    className="text-white hover:text-blue-400 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                >
-                    خدماتنا
-                </Link>
+
                 <Link
                     href="/#projects"
                     className="text-white hover:text-blue-400 transition-colors"
@@ -105,19 +92,9 @@ export default function Navbar() {
                         >
                             الرئيسية
                         </Link>
-                        <Link
-                            href="/#philosophy"
-                            className="nav-link hover:text-blue-400 transition-colors duration-300"
-                        >
-                            لماذا نحن
-                        </Link>
 
-                        <Link
-                            href="/services"
-                            className="nav-link hover:text-blue-400 transition-colors duration-300"
-                        >
-                            خدماتنا
-                        </Link>
+
+
                         <Link
                             href="/#projects"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"

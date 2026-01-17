@@ -18,30 +18,26 @@ export default function Hero() {
             <div className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6 text-center lg:text-right">
                     <h2 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-wide text-white">
-                        برايم توب بيلد…
+                        Prime Top Build
                         <span className="block text-blue-400 mt-4 text-3xl md:text-4xl">
-                            القيمة الحقيقية للعقار
+                            نصنع القيمة الحقيقية للعقار
                         </span>
                     </h2>
-                    <h3 className="text-xl md:text-2xl font-bold text-slate-200">
-                        هل تبحث عن مجرد جدران من الطوب الأحمر… أم عن أسلوب حياة متكامل؟
-                    </h3>
                     <p className="text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 text-slate-300 leading-relaxed">
-                        لا نبيعك شقة طوب أحمر ونتركك وحدك.
-                        في برايم توب بيلد نؤمن أن العقار عيشة متكاملة، لذلك نقدّم عمارات كاملة الخدمات، بتشطيبات مميزة، ومرافق حقيقية، ونظام إدارة يمنحك إحساس الكمبوند… بسعر أقل وتكلفة واضحة بلا مفاجآت.
+                        جودة بناء تدوم، ورفاهية سكن تبدأ من أدق التفاصيل. أكثر من 17 مشروعاً سكنياً ومول تجاري بمعايير هندسية لا تقبل المساومة.
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                         <a
                             href="#projects"
                             className="inline-block btn-primary font-bold py-3 px-10 rounded-xl text-lg hover:shadow-blue-500/50 hover:-translate-y-1 transition-all"
                         >
-                            اكتشف مشروعاتنا
+                            تصفح مشاريعنا
                         </a>
                         <a
                             href="#contact"
                             className="inline-block border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-bold py-3 px-10 rounded-xl text-lg hover:-translate-y-1 transition-all"
                         >
-                            احجز زيارة ميدانية
+                            تواصل معنا الآن
                         </a>
                     </div>
                 </div>

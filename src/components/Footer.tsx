@@ -7,7 +7,7 @@ export default function Footer() {
                     <div className="space-y-6 text-center md:text-right">
                         <img src="https://gkepkqimbktyzfcflrrr.supabase.co/storage/v1/object/public/files/ptb.png" alt="Prime Top Build" className="h-24 w-auto mx-auto md:mx-0" />
                         <p className="text-slate-400 leading-relaxed">
-                            نطوّر مشروعات سكنية متكاملة  لنقدّم لك أكثر من مجرد شقة… نقدّم لك عيشة كاملة التفاصيل بسعر حقيقي ووضوح تام.
+                            نصنع القيمة الحقيقية للعقار. جودة بناء تدوم، ورفاهية سكن تبدأ من أدق التفاصيل.
                         </p>
                         <div className="flex justify-center md:justify-start gap-4">
                             <a href="https://facebook.com/primetopbuild" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 transition-colors">
@@ -43,16 +43,13 @@ export default function Footer() {
                     <div className="text-center md:text-right lg:col-span-2">
                         <h4 className="text-white font-bold text-lg mb-6 border-b border-blue-500/30 inline-block pb-2">بيانات التواصل</h4>
                         <ul className="space-y-4">
+
                             <li className="flex items-center justify-center md:justify-start gap-3 text-slate-400">
-                                <span className="font-bold text-white">العنوان:</span>
-                                <div>الجيزة - مصر</div>
-                            </li>
-                            <li className="flex items-center justify-center md:justify-start gap-3 text-slate-400">
-                                <span className="font-bold text-white">الهاتف:</span>
+                                <span className="font-bold text-white"> الموبايل:</span>
                                 <span dir="ltr">01000262701</span>
                             </li>
                             <li className="flex items-center justify-center md:justify-start gap-3 text-slate-400">
-                                <span className="font-bold text-white">البريد:</span>
+                                <span className="font-bold text-white">البريد الإلكتروني:</span>
                                 <span>info@primetopbuild.com</span>
                             </li>
                         </ul>
@@ -60,7 +57,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-slate-900 pt-8 text-center text-slate-500 text-sm">
-                    <p>© جميع الحقوق محفوظة لشركة برايم توب بيلد – {new Date().getFullYear()}.</p>
+                    <p>Prime Top Build © 2026 - القيمة الحقيقية للعقار.</p>
                 </div>
             </div>
         </footer>

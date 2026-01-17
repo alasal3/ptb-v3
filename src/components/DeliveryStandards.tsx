@@ -1,93 +1,89 @@
 import React from 'react';
-import { Home, CheckSquare, Layers } from 'lucide-react';
+import { Home, CheckSquare, Layers, Palette, Building, Volume2, Shield, Settings, Wrench } from 'lucide-react';
 
 export default function DeliveryStandards() {
+    const deliverySpecs = [
+        {
+            icon: Palette,
+            title: "حرية التصميم الداخلي (طوب أحمر)",
+            description: "نسلمك الوحدة \"طوب أحمر\" داخلياً لتمنحك المرونة الكاملة في تقسيم الغرف واختيار التشطيبات والديكورات التي تناسب ذوقك واحتياجات أسرتك الخاصة، دون فرض ذوق معين عليك.",
+            color: "blue"
+        },
+        {
+            icon: Building,
+            title: "فخامة المداخل والواجهات",
+            description: "تشطيب خارجي كامل، مداخل فندقية فاخرة تعكس رقي السكان، وبوابات إلكترونية حديثة للعمارة.",
+            color: "purple"
+        },
+        {
+            icon: Volume2,
+            title: "الهدوء والخصوصية",
+            description: "جميع الوحدات مزودة بشبابيك \"ألوميتال\" قطاعات عازلة للصوت والأتربة، لتنعم بمنزل هادئ ونظيف دائماً.",
+            color: "green"
+        },
+        {
+            icon: Shield,
+            title: "أقصى درجات الأمان",
+            description: "أبواب مصفحة لكل شقة، نظام مراقبة بالكاميرات (CCTV) يغطي المبنى، ونظام أمن وحراسة.",
+            color: "red"
+        },
+        {
+            icon: Settings,
+            title: "مرافق متكاملة",
+            description: "مصاعد عالية الجودة، عدادات مياه وكهرباء رسمية جاهزة للعمل.",
+            color: "orange"
+        },
+        {
+            icon: Wrench,
+            title: "استدامة القيمة (Facility Management)",
+            description: "لا تنتهي علاقتنا بك عند البيع؛ نوفر نظام إدارة وصيانة دورية للمبنى بعد التسليم للحفاظ على نظافته وكفاءته، مما يضمن زيادة سعره مستقبلاً.",
+            color: "teal"
+        }
+    ];
+
+    const getColorClasses = (color: string) => {
+        const colors: { [key: string]: { icon: string; bg: string; border: string } } = {
+            blue: { icon: "text-blue-400", bg: "bg-blue-500/20", border: "border-blue-500/30" },
+            purple: { icon: "text-purple-400", bg: "bg-purple-500/20", border: "border-purple-500/30" },
+            green: { icon: "text-green-400", bg: "bg-green-500/20", border: "border-green-500/30" },
+            red: { icon: "text-red-400", bg: "bg-red-500/20", border: "border-red-500/30" },
+            orange: { icon: "text-orange-400", bg: "bg-orange-500/20", border: "border-orange-500/30" },
+            teal: { icon: "text-teal-400", bg: "bg-teal-500/20", border: "border-teal-500/30" }
+        };
+        return colors[color] || colors.blue;
+    };
+
     return (
         <section id="delivery" className="py-20 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
 
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-                        مواصفات التسليم
+                        استلم عقارك بأعلى معايير الرفاهية والأمان
                     </h2>
                     <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                        نحن نؤمن بأن العميل يستحق استلام وحدة جاهزة للسكن في بيئة محترمة
+                        في Prime Top Build، نوازن بين رفاهية المظهر الخارجي وحريتك في اختيار ذوقك الداخلي. إليك ما ستحصل عليه:
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                    {/* Unit Specs */}
-                    <div className="glass-card p-8 rounded-2xl border-t-4 border-t-blue-500 hover:bg-slate-800/60 transition-colors">
-                        <div className="flex items-center gap-4 mb-6 border-b border-slate-700/50 pb-4">
-                            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                <Home className="w-6 h-6 text-blue-400" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {deliverySpecs.map((spec, index) => {
+                        const colorClasses = getColorClasses(spec.color);
+                        return (
+                            <div
+                                key={index}
+                                className={`glass-card p-6 rounded-2xl border ${colorClasses.border} hover:bg-slate-800/60 transition-all duration-300 group hover:-translate-y-2`}
+                            >
+                                <div className={`w-14 h-14 ${colorClasses.bg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                                    <spec.icon className={`w-7 h-7 ${colorClasses.icon}`} />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-3">{spec.title}</h3>
+                                <p className="text-slate-400 leading-relaxed text-sm">{spec.description}</p>
                             </div>
-                            <h3 className="text-2xl font-bold text-white">مواصفات الوحدة</h3>
-                        </div>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3">
-                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
-                                <div>
-                                    <span className="text-white font-bold block mb-1">الشقة:</span>
-                                    <span className="text-slate-400">طوب أحمر (من الداخل) لتترك لك حرية التقسيم والديكور.</span>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
-                                <div>
-                                    <span className="text-white font-bold block mb-1">باب الشقة:</span>
-                                    <span className="text-slate-400">باب مصفح عالي الجودة.</span>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
-                                <div>
-                                    <span className="text-white font-bold block mb-1">الواجهات:</span>
-                                    <span className="text-slate-400">واجهات مشطبة بالكامل.</span>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <CheckSquare className="w-5 h-5 text-blue-400 mt-1 shrink-0" />
-                                <div>
-                                    <span className="text-white font-bold block mb-1">الشبابيك والبلكونة:</span>
-                                    <span className="text-slate-400"> شبابيك وباب بلكونة الوميتال بجودة عالية.</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Building Specs */}
-                    <div className="glass-card p-8 rounded-2xl border-t-4 border-t-purple-500 hover:bg-slate-800/60 transition-colors">
-                        <div className="flex items-center gap-4 mb-6 border-b border-slate-700/50 pb-4">
-                            <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                <Layers className="w-6 h-6 text-purple-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-white">مواصفات المبنى</h3>
-                        </div>
-                        <ul className="space-y-4">
-                            <li className="flex items-center gap-3">
-                                <CheckSquare className="w-5 h-5 text-purple-400 shrink-0" />
-                                <span className="text-slate-300">واجهات مشطبة بالكامل.</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <CheckSquare className="w-5 h-5 text-purple-400 shrink-0" />
-                                <span className="text-slate-300">مداخل كاملة يتشطيب فاخر.</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <CheckSquare className="w-5 h-5 text-purple-400 shrink-0" />
-                                <span className="text-slate-300">مصعد (أسانسير) يعمل بكفاءة.</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <CheckSquare className="w-5 h-5 text-purple-400 shrink-0" />
-                                <span className="text-slate-300">باب مصفح رئيسي للعمارة.</span>
-                            </li>
-                            <li className="flex items-center gap-3 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 mt-2">
-                                <CheckSquare className="w-5 h-5 text-green-400 shrink-0" />
-                                <span className="text-white font-bold">الإضافات: باكية جراج خاصة + مخزن لكل وحدة.</span>
-                            </li>
-                        </ul>
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

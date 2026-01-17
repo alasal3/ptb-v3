@@ -5,11 +5,11 @@ import { getV1Projects, getV1HeroSettings, getV1MasterStages } from "@/lib/api";
 import JsonLd from "@/components/JsonLd";
 
 // Lazy load components below the fold
-const PricingModel = dynamicImport(() => import("@/components/PricingModel"), { ssr: true });
-const Philosophy = dynamicImport(() => import("@/components/Philosophy"), { ssr: true });
+const StatsBar = dynamicImport(() => import("@/components/StatsBar"), { ssr: true });
+const MallBanner = dynamicImport(() => import("@/components/MallBanner"), { ssr: true });
 const Projects = dynamicImport(() => import("@/components/Projects"), { ssr: true });
 const DeliveryStandards = dynamicImport(() => import("@/components/DeliveryStandards"), { ssr: true });
-const SalesSystems = dynamicImport(() => import("@/components/SalesSystems"), { ssr: true });
+const ContactForm = dynamicImport(() => import("@/components/ContactForm"), { ssr: true });
 const Footer = dynamicImport(() => import("@/components/Footer"), { ssr: true });
 
 export const dynamic = 'force-dynamic';
@@ -48,13 +48,13 @@ export default async function Home() {
       <main className="relative z-10 mt-8">
         <div id="main-content">
           <Hero />
-          <PricingModel />
-          <Philosophy />
-          <Projects projects={projects} heroSettings={heroSettings} masterStages={masterStages} />
+          <StatsBar />
           <DeliveryStandards />
-          <SalesSystems />
+          <Projects projects={projects} heroSettings={heroSettings} masterStages={masterStages} />
+          <div className="mb-12"><MallBanner /></div>
+          <ContactForm />
         </div>
-      </main>
+      </main >
       <Footer />
     </>
   );
