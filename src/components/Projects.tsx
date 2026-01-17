@@ -256,6 +256,8 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
             }[];
     };
 
+    const hasCompletedProjects = projects.some(p => p.status === 'completed');
+
     return (
         <section id="projects" className="py-20 bg-transparent text-[#f8fafc] font-tajawal selection:bg-accent selection:text-black relative overflow-hidden">
             {/* Background Effects */}
@@ -273,10 +275,12 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                     <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl mx-auto mb-6">
                         نفخر بامتلاكنا محفظة تضم <span className="text-accent font-bold">17 مشروعاً سكنياً</span> (عمارات منفصلة) في أميز المواقع
                     </p>
+                    {/* 
                     <div className="flex flex-wrap justify-center gap-4 text-sm">
                         <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-4 py-2 rounded-full">مشاريع قيد التسليم الفوري</span>
                         <span className="bg-amber-500/20 text-amber-400 border border-amber-500/30 px-4 py-2 rounded-full">مشاريع تحت الإنشاء بجدول زمني دقيق</span>
-                    </div>
+                    </div> 
+                    */}
                 </div>
 
                 {/* Video Section (Dynamic Overlay) */}
@@ -371,26 +375,28 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                 )}
 
                 {/* Filters */}
-                <div className="flex justify-center gap-3 mb-12 flex-wrap animate-card" style={{ animationDelay: '0.3s' }}>
-                    <button
-                        onClick={() => setFilter('all')}
-                        className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'all' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
-                    >
-                        الكل
-                    </button>
-                    <button
-                        onClick={() => setFilter('completed')}
-                        className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'completed' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
-                    >
-                        مشاريع منتهية
-                    </button>
-                    <button
-                        onClick={() => setFilter('under-construction')}
-                        className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'under-construction' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
-                    >
-                        تحت الإنشاء
-                    </button>
-                </div>
+                {hasCompletedProjects && (
+                    <div className="flex justify-center gap-3 mb-12 flex-wrap animate-card" style={{ animationDelay: '0.3s' }}>
+                        <button
+                            onClick={() => setFilter('all')}
+                            className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'all' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
+                        >
+                            الكل
+                        </button>
+                        <button
+                            onClick={() => setFilter('completed')}
+                            className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'completed' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
+                        >
+                            مشاريع منتهية
+                        </button>
+                        <button
+                            onClick={() => setFilter('under-construction')}
+                            className={`px-6 py-2.5 rounded-full border border-white/10 transition duration-300 ${filter === 'under-construction' ? 'bg-accent text-black font-bold border-accent' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}
+                        >
+                            تحت الإنشاء
+                        </button>
+                    </div>
+                )}
 
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-6xl mx-auto pb-20">
@@ -439,7 +445,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                     <span className="text-sm flex items-center gap-2"><MapPin size={14} className="text-accent" /> {project.location}</span>
                                     <div className="flex gap-3 text-xs">
                                         <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">المساحة: {project.area} م²</span>
-                                        <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">{project.units_count} وحدة</span>
+                                        {/* <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">{project.units_count} وحدة</span> */}
                                     </div>
                                 </div>
                                 <div className="flex justify-end items-center border-t border-white/10 pt-4 min-h-[57px]">
@@ -534,18 +540,20 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                             <div className="text-gray-500 text-xs mb-1">المساحة الإجمالية</div>
                                             <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.area} م²</div>
                                         </div>
-                                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                        {/* <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                             <div className="text-gray-500 text-xs mb-1">عدد الوحدات</div>
                                             <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.units_count}</div>
-                                        </div>
-                                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                        </div> */}
+                                        {/* <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                             <div className="text-gray-500 text-xs mb-1">نسبة الإنجاز</div>
                                             <div className="font-bold text-xl md:text-2xl text-accent">{selectedProject.progress_percentage}%</div>
-                                        </div>
-                                        <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                                            <div className="text-gray-500 text-xs mb-1">التسليم المتوقع</div>
-                                            <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.delivery_date}</div>
-                                        </div>
+                                        </div> */}
+                                        {selectedProject.delivery_date && (
+                                            <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
+                                                <div className="text-gray-500 text-xs mb-1">التسليم المتوقع</div>
+                                                <div className="font-bold text-xl md:text-2xl text-white">{selectedProject.delivery_date}</div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Project Gallery */}
