@@ -44,7 +44,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
     const masterStages = (masterStagesRes.data || []) as V1MasterStage[];
 
     return (
-        <main className="min-h-screen bg-slate-900">
+        <main className="min-h-screen bg-transparent relative">
             <Navbar />
             <ProjectDetails project={project} masterStages={masterStages} />
             <Footer />

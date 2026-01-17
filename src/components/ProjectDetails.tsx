@@ -131,11 +131,11 @@ export default function ProjectDetails({ project, masterStages }: ProjectDetails
     }, [lightbox, nextImage, prevImage]);
 
     return (
-        <div className="bg-primary min-h-screen pt-24 pb-20">
+        <div className="min-h-screen pt-24 pb-20">
             <div className="container mx-auto px-4">
-                <div className="pointer-events-auto bg-primary border border-white/10 w-full rounded-3xl flex flex-col shadow-2xl overflow-hidden relative animate-[fadeInUp_0.4s_ease-out]">
+                <div className="pointer-events-auto glass-card w-full rounded-3xl flex flex-col shadow-2xl overflow-hidden relative animate-[fadeInUp_0.4s_ease-out]">
                     {/* Header */}
-                    <div className="p-6 border-b border-white/10 flex flex-wrap gap-6 justify-between items-start bg-primary z-10 shrink-0">
+                    <div className="p-6 border-b border-white/10 flex flex-wrap gap-6 justify-between items-start bg-transparent z-10 shrink-0">
                         <div className="flex-1 min-w-[200px]">
                             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{project.title}</h2>
                             <div className="flex items-center gap-4 text-sm">
@@ -171,16 +171,18 @@ export default function ProjectDetails({ project, masterStages }: ProjectDetails
                         >
                             مراحل التنفيذ والمعرض
                         </button>
-                        <button
-                            onClick={() => setActiveTab('units')}
-                            className={`flex-1 py-4 text-center font-bold border-b-2 transition ${activeTab === 'units' ? 'border-accent text-accent bg-accent/5' : 'border-transparent text-gray-400 hover:text-white'}`}
-                        >
-                            الوحدات والمخططات
-                        </button>
+                        {project.v1_units && project.v1_units.length > 0 && (
+                            <button
+                                onClick={() => setActiveTab('units')}
+                                className={`flex-1 py-4 text-center font-bold border-b-2 transition ${activeTab === 'units' ? 'border-accent text-accent bg-accent/5' : 'border-transparent text-gray-400 hover:text-white'}`}
+                            >
+                                الوحدات والمخططات
+                            </button>
+                        )}
                     </div>
 
                     {/* Body */}
-                    <div className="flex-1 p-6 md:p-8 bg-primary">
+                    <div className="flex-1 p-6 md:p-8 bg-transparent">
                         {activeTab === 'timeline' && (
                             <div className="block">
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -192,10 +194,7 @@ export default function ProjectDetails({ project, masterStages }: ProjectDetails
                                         <div className="text-gray-500 text-xs mb-1">عدد الوحدات</div>
                                         <div className="font-bold text-xl md:text-2xl text-white">{project.units_count}</div>
                                     </div>
-                                    <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
-                                        <div className="text-gray-500 text-xs mb-1">نسبة الإنجاز</div>
-                                        <div className="font-bold text-xl md:text-2xl text-accent">{project.progress_percentage}%</div>
-                                    </div>
+
                                     <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                                         <div className="text-gray-500 text-xs mb-1">التسليم المتوقع</div>
                                         <div className="font-bold text-xl md:text-2xl text-white">{project.delivery_date}</div>

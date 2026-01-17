@@ -65,13 +65,7 @@ export default function MallProject({ project }: MallProjectProps) {
                             {project.status === 'under-construction' ? 'تحت الإنشاء' : 'مكتمل'}
                         </div>
                     </div>
-                    <div className="glass-card p-8 rounded-3xl border-t-4 border-t-purple-500 bg-slate-900/80 backdrop-blur-xl">
-                        <div className="text-slate-400 mb-2">نسبة الإنجاز</div>
-                        <div className="text-3xl font-bold text-white mb-1">{project.progress_percentage}%</div>
-                        <div className="w-full h-2 bg-slate-700 rounded-full mt-2 overflow-hidden">
-                            <div className="h-full bg-purple-500" style={{ width: `${project.progress_percentage}%` }}></div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

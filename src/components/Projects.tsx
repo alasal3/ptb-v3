@@ -442,8 +442,7 @@ export default function Projects({ projects, heroSettings, masterStages }: Proje
                                         <span className="bg-white/10 px-3 py-1.5 rounded text-gray-300 border border-white/5">{project.units_count} وحدة</span>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center border-t border-white/10 pt-4">
-                                    <div className="text-xs text-gray-400">نسبة الإنجاز: <span className="text-accent font-bold text-sm">{project.progress_percentage}%</span></div>
+                                <div className="flex justify-end items-center border-t border-white/10 pt-4 min-h-[57px]">
                                     <div className="w-10 h-10 rounded-full bg-accent text-primary flex items-center justify-center transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300 shadow-[0_0_15px_#d4af37]">
                                         <ArrowLeft size={16} />
                                     </div>
