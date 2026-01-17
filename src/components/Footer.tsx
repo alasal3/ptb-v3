@@ -29,11 +29,13 @@ export default function Footer() {
                     <div className="text-center md:text-right">
                         <h4 className="text-white font-bold text-lg mb-6 border-b border-blue-500/30 inline-block pb-2">روابط سريعة</h4>
                         <ul className="space-y-4">
-                            <li><a href="#hero" className="text-slate-400 hover:text-blue-400 transition-colors">الرئيسية</a></li>
-                            <li><a href="#about" className="text-slate-400 hover:text-blue-400 transition-colors">من نحن</a></li>
-                            <li><a href="#projects" className="text-slate-400 hover:text-blue-400 transition-colors">مشروعاتنا</a></li>
-                            <li><a href="#faq" className="text-slate-400 hover:text-blue-400 transition-colors">الأسئلة الشائعة</a></li>
-                            <li><a href="#contact" className="text-slate-400 hover:text-blue-400 transition-colors">اتصل بنا</a></li>
+                            <li><a href="/" className="text-slate-400 hover:text-blue-400 transition-colors">الرئيسية</a></li>
+                            <li><a href="/#philosophy" className="text-slate-400 hover:text-blue-400 transition-colors">لماذا نحن</a></li>
+                            <li><a href="/#projects" className="text-slate-400 hover:text-blue-400 transition-colors">مشاريعنا</a></li>
+                            <li><a href="/services" className="text-slate-400 hover:text-blue-400 transition-colors">خدماتنا</a></li>
+                            <li><a href="/events" className="text-slate-400 hover:text-blue-400 transition-colors">الفعاليات</a></li>
+                            <li><a href="/about" className="text-slate-400 hover:text-blue-400 transition-colors">من نحن</a></li>
+                            <li><a href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors">تواصل معنا</a></li>
                         </ul>
                     </div>
 

@@ -48,13 +48,7 @@ export default function Navbar() {
                 >
                     لماذا نحن
                 </Link>
-                <Link
-                    href="/#features"
-                    className="text-white hover:text-blue-400 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                >
-                    مميزاتنا
-                </Link>
+
                 <Link
                     href="/services"
                     className="text-white hover:text-blue-400 transition-colors"
@@ -117,12 +111,7 @@ export default function Navbar() {
                         >
                             لماذا نحن
                         </Link>
-                        <Link
-                            href="/#features"
-                            className="nav-link hover:text-blue-400 transition-colors duration-300"
-                        >
-                            مميزاتنا
-                        </Link>
+
                         <Link
                             href="/services"
                             className="nav-link hover:text-blue-400 transition-colors duration-300"
